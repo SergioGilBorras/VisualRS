@@ -112,9 +112,9 @@ public class Test {
      */
     public Test() {
         try {
-            //exec_once(0);
+            //exec_once(14);
             exec_batch();
-            //ejecucionBateria_graph();
+            //exec_graphics_batch();
         } catch (Exception e) {
             System.err.println("Exception: " + e.getMessage());
         }
@@ -140,8 +140,8 @@ public class Test {
     private void exec_once(int idSel) throws Exception {
         //jester-data-1.csv");//BX-Book-Ratings.csv//ml1m-ratings.txt");//filmtrust-ratings//nf-ratings//ml1m-ratings
 
-        File file = new File(".\\datasets\\BX-Book-Ratings.csv");
-        MV = new Rank_matrix(file, Rank_matrix.Dataset_To_Read.BookCrossing);
+        File file = new File(".\\datasets\\ml1m-ratings.txt");
+        MV = new Rank_matrix(file, Rank_matrix.Dataset_To_Read.Movielens);
         gvss = new Generate_similarity_vectors_simple(4, MV);
         generate_list_SM();
         Similarity_measure_final FCF_activo = list_SM.get(idSel);
@@ -235,9 +235,9 @@ public class Test {
      */
     private void exec_graphics_batch() throws Exception {
 
-        File file = new File(".\\datasets\\ml1m-ratings.txt");//filmtrust-ratings//nf-ratings//ml1m-ratings
+        File file = new File(".\\datasets\\filmtrust-ratings.txt");//filmtrust-ratings//nf-ratings//ml1m-ratings
 
-        MV = new Rank_matrix(file, Rank_matrix.Dataset_To_Read.Movielens);
+        MV = new Rank_matrix(file, Rank_matrix.Dataset_To_Read.Filmtrus);
         gvss = new Generate_similarity_vectors_simple(4, MV);
         generate_list_SM();
 
