@@ -1,0 +1,12 @@
+org.etsisi.visualrs.io
+org.etsisi.visualrs.matrices
+org.etsisi.visualrs.models
+org.etsisi.visualrs.qualityMeasures.fAggregation
+org.etsisi.visualrs.qualityMeasures.fComposition
+org.etsisi.visualrs.qualityMeasures.fModification
+org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode
+org.etsisi.visualrs.qualityMeasures.qualityMeasuresFinal
+org.etsisi.visualrs.similarityMeasureBase
+org.etsisi.visualrs.similarityMeasureFinal
+org.etsisi.visualrs.test
+org.etsisi.visualrs.test.componets
