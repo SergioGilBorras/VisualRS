@@ -48,6 +48,7 @@ import org.etsisi.visualrs.models.DistanceMatrixWOuts;
 import org.etsisi.visualrs.models.DistanceMatrixWq;
 import org.etsisi.visualrs.models.MaximumSpanningTreeMatrix;
 import org.etsisi.visualrs.io.LoadData;
+import org.etsisi.visualrs.io.MenuCommandLine;
 import org.etsisi.visualrs.qualityMeasures.fAggregation.AVG;
 import org.etsisi.visualrs.qualityMeasures.fComposition.Div;
 import org.etsisi.visualrs.qualityMeasures.fModification.LN;
@@ -115,11 +116,30 @@ public class Test {
      */
     public Test() {
         try {
-            selectDataset(LoadData.DatasetToRead.Movielens);
-            //execOnce(new FPearson());
-            execBatch();
-            //execGraphicsBatch();
+            MenuCommandLine menu = new MenuCommandLine();
+            if (menu.isLoadCorrect()) {
+                selectDataset(menu.getDataset());
+                gvss = new GenerateSimilarityVectorsSimple(4, MV);
+                generateListSM();
+
+                switch (menu.getMode(listSM)) {
+                    case 0:
+                        execOnce(menu.getSimilarityMeasure());
+                        break;
+                    case 1:
+                        execBatch();
+                        break;
+                    case 2:
+                        execGraphicsBatch();
+                        break;
+                    default:
+                        System.out.println("Sorry, you should fill correctly the menu.1");
+                }
+            } else {
+                System.out.println("Sorry, you should fill correctly the menu.");
+            }
         } catch (Exception e) {
+            //e.printStackTrace();
             System.err.println("Exception: " + e.getMessage());
         }
 
@@ -173,9 +193,6 @@ public class Test {
      */
     private void execOnce(SimilarityMeasureFinal FCFActivo) throws Exception {
 
-        gvss = new GenerateSimilarityVectorsSimple(4, MV);
-        generateListSM();
-
         if (MV.hasRankMatrix(FCFActivo.getName())) {
             MV.loadRankMatrix(FCFActivo.getName());
         }
@@ -206,9 +223,6 @@ public class Test {
     private void execBatch() throws Exception {
         boolean setHeader = false;
         String Header = ";";
-
-        gvss = new GenerateSimilarityVectorsSimple(4, MV);
-        generateListSM();
 
         File sFile = new File("./data/" + fileName + "/resultado_" + System.currentTimeMillis() + ".csv");
         try {
@@ -251,6 +265,7 @@ public class Test {
             }
             bw.close();
         } catch (Exception e) {
+            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }
@@ -260,9 +275,6 @@ public class Test {
      * them.
      */
     private void execGraphicsBatch() throws Exception {
-
-        gvss = new GenerateSimilarityVectorsSimple(4, MV);
-        generateListSM();
 
         try {
             for (SimilarityMeasureFinal FCFActivo : listSM) {
@@ -275,7 +287,7 @@ public class Test {
                 execGraphics();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }
