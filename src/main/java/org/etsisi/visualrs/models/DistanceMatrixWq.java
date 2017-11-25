@@ -112,7 +112,7 @@ public class DistanceMatrixWq {
         try {
             treeDistanceMatrixWq.save("./data/" + MRM.getFileName() + "/" + MRM.getSimilarityMeasureName() + "/distanciaWqMatrix.dat");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }

@@ -179,7 +179,7 @@ public final class MaximumSpanningTreeMatrix {
         try {
             maximumSpanningTreeMatrix.save("./data/" + MC.getFileName() + "/" + MC.getSimilarityMeasureName() + "/MRMMatrix.dat");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }

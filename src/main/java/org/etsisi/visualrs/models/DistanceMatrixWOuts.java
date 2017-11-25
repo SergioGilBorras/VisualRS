@@ -117,7 +117,7 @@ public class DistanceMatrixWOuts {
         try {
             treeDistanceMatrixWouts.save("./data/" + MRM.getFileName() + "/" + MRM.getSimilarityMeasureName() + "/distanciaWoutsMatrix.dat");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }

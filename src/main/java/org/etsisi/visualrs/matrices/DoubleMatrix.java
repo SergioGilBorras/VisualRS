@@ -147,7 +147,7 @@ public class DoubleMatrix {
             oos.close();
             fos.close();
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            //ioe.printStackTrace();
         }
     }
 
@@ -168,11 +168,12 @@ public class DoubleMatrix {
             ois.close();
             fis.close();
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            //ioe.printStackTrace();
+            System.out.println("IOException: " + ioe.getMessage());
             return;
         } catch (ClassNotFoundException c) {
             System.out.println("Class not found");
-            c.printStackTrace();
+            //c.printStackTrace();
             return;
         }
     }

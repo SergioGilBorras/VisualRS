@@ -179,7 +179,7 @@ public final class SimilarityMatrix {
         try {
             similarityMatrix.save("./data/" + MV.getFileName() + "/" + FC.getName() + "/correlationMatrix.dat");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }

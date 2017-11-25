@@ -71,8 +71,8 @@ public final class LoadData {
      */
     public LoadData(File file, DatasetToRead DtR) throws Exception {
         this.file = file;
-        if (LoadData.this.hasRankMatrix()) {
-            LoadData.this.loadRankMatrix();
+        if (hasRankMatrix()) {
+            loadRankMatrix();
             System.out.println("Matrix:: " + this.rankMatrix.rows + " X " + this.rankMatrix.columns);
         } else {
             switch (DtR) {
@@ -152,7 +152,7 @@ public final class LoadData {
             System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
             System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
@@ -214,7 +214,7 @@ public final class LoadData {
             System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
             System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
@@ -285,7 +285,7 @@ public final class LoadData {
             System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
             System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
@@ -378,7 +378,7 @@ public final class LoadData {
             System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
             System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
@@ -439,7 +439,7 @@ public final class LoadData {
             System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
             System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
@@ -454,7 +454,7 @@ public final class LoadData {
         try {
             rankMatrix.save("./data/" + file.getName() + "/votosMatrix.dat");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }
@@ -473,7 +473,7 @@ public final class LoadData {
         try {
             rankMatrix.save("./data/" + file.getName() + "/" + FCName + "/votosMatrix.dat");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }
@@ -486,7 +486,7 @@ public final class LoadData {
                 rankMatrix.load("./data/" + file.getName() + "/votosMatrix.dat");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Excepcion (loadRankMatrix): " + e.getMessage());
         }
     }
@@ -502,7 +502,7 @@ public final class LoadData {
             rankMatrix = new DoubleMatrix();
             rankMatrix.load("./data/" + file.getName() + "/" + FCName + "/votosMatrix.dat");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Excepcion (loadRankMatrix): " + e.getMessage());
         }
     }
