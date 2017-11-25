@@ -124,7 +124,12 @@ public class Test {
 
                 switch (menu.getMode(listSM)) {
                     case 0:
-                        execOnce(menu.getSimilarityMeasure());
+                        SimilarityMeasureFinal SMF = menu.getSimilarityMeasure();
+                        if (SMF != null) {
+                            execOnce(SMF);
+                        } else {
+                            System.out.println("Sorry, you should fill correctly the menu.");
+                        }
                         break;
                     case 1:
                         execBatch();
@@ -193,28 +198,30 @@ public class Test {
      */
     private void execOnce(SimilarityMeasureFinal FCFActivo) throws Exception {
 
-        if (MV.hasRankMatrix(FCFActivo.getName())) {
-            MV.loadRankMatrix(FCFActivo.getName());
+        if (FCFActivo != null) {
+            if (MV.hasRankMatrix(FCFActivo.getName())) {
+                MV.loadRankMatrix(FCFActivo.getName());
+            }
+
+            System.out.println(" -- " + FCFActivo.getName() + " -- ");
+
+            MC = new SimilarityMatrix(FCFActivo, MV);
+            MRM = new MaximumSpanningTreeMatrix(MC);
+
+            nouts = new NumberOuts(MRM);
+
+            MDW1 = new DistanceMatrixW1(MRM);
+            MDWq = new DistanceMatrixWq(MRM);
+            MDWouts = new DistanceMatrixWOuts(MRM, nouts);
+
+            generateListQM();
+
+            for (QualityMeasureFinal metrica : listQM) {
+                System.out.println(metrica.getName() + " .. " + metrica.calculate());
+            }
+
+            execGraphics();
         }
-
-        System.out.println(" -- " + FCFActivo.getName() + " -- ");
-
-        MC = new SimilarityMatrix(FCFActivo, MV);
-        MRM = new MaximumSpanningTreeMatrix(MC);
-
-        nouts = new NumberOuts(MRM);
-
-        MDW1 = new DistanceMatrixW1(MRM);
-        MDWq = new DistanceMatrixWq(MRM);
-        MDWouts = new DistanceMatrixWOuts(MRM, nouts);
-
-        generateListQM();
-
-        for (QualityMeasureFinal metrica : listQM) {
-            System.out.println(metrica.getName() + " .. " + metrica.calculate());
-        }
-
-        execGraphics();
     }
 
     /**
