@@ -127,15 +127,18 @@ public class Test {
                         SimilarityMeasureFinal SMF = menu.getSimilarityMeasure();
                         if (SMF != null) {
                             execOnce(SMF);
+                            System.out.println("\nYou can get the generated report and graphics in the DATA folder.");
                         } else {
                             System.out.println("Sorry, you should fill correctly the menu.");
                         }
                         break;
                     case 1:
                         execBatch();
+                        System.out.println("\nYou can get the generated report and graphics in the DATA folder.");
                         break;
                     case 2:
                         execGraphicsBatch();
+                        System.out.println("\nYou can get the generated graphics in the DATA folder.");
                         break;
                     default:
                         System.out.println("Sorry, you should fill correctly the menu.1");
