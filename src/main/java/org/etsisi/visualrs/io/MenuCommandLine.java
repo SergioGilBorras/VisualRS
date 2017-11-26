@@ -75,6 +75,7 @@ public class MenuCommandLine {
     }
 
     private void printHeader() {
+        System.out.println("\n");
         System.out.println(" ********************************************************");
         System.out.println(" ***                                                  ***");
         System.out.println(" ***        VisualRS - For recomender system          ***");

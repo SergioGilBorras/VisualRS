@@ -67,7 +67,6 @@ import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.NumberOuts;
 import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.NumberVotes;
 import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.ClosenessCentralityWqW1;
 import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.SumVotes;
-import org.openide.util.Utilities;
 
 /**
  * This class executes the different experiments and get the results
@@ -109,6 +108,7 @@ public class Test {
      */
     public static void main(String[] args) {
         Test t = new Test();
+        System.exit(0);
     }
 
     /**
@@ -147,7 +147,7 @@ public class Test {
                 System.out.println("Sorry, you should fill correctly the menu.");
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             System.err.println("Exception: " + e.getMessage());
         }
 
@@ -160,22 +160,22 @@ public class Test {
         File file;
         switch (dts) {
             case Jester:
-                file = Utilities.toFile(this.getClass().getResource("/datasets/jester-data-1.csv").toURI());
+                file = new File(this.getClass().getResource("/datasets/jester-data-1.csv").getPath());
                 break;
             case Movielens:
-                file = Utilities.toFile(this.getClass().getResource("/datasets/ml1m-ratings.txt").toURI());
+                file = new File(this.getClass().getResource("/datasets/ml1m-ratings.txt").getPath());
                 break;
             case BookCrossing:
-                file = Utilities.toFile(this.getClass().getResource("/datasets/BX-Book-Ratings.csv").toURI());
+                file = new File(this.getClass().getResource("/datasets/BX-Book-Ratings.csv").getPath());
                 break;
             case Filmtrus:
-                file = Utilities.toFile(this.getClass().getResource("/datasets/filmtrust-ratings.txt").toURI());
+                file = new File(this.getClass().getResource("/datasets/filmtrust-ratings.txt").getPath());
                 break;
             case NetFlix:
-                file = Utilities.toFile(this.getClass().getResource("/datasets/nf-ratings.txt").toURI());
+                file = new File(this.getClass().getResource("/datasets/nf-ratings.txt").getPath());
                 break;
             default:
-                file = Utilities.toFile(this.getClass().getResource("/datasets/filmtrust-ratings-s.txt").toURI());
+                file = new File(this.getClass().getResource("/datasets/filmtrust-ratings-s.txt").getPath());
                 break;
         }
         MV = new LoadData(file, dts);
