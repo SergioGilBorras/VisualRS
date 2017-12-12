@@ -1,7 +1,5 @@
 # Visual-RS 2017
 
-## Index
-
 1. [Installation](#installation)
 2. [Getting Started](#getting-started)
 3. [Package Structure](#package-structure)
@@ -10,7 +8,7 @@
 6. [Test Example](#test-example)
 7. [Datasets](#datasets)
 
-## Sumary
+## Summary
 
 VisualRS is an object oriented Java framework that allows:
 
