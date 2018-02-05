@@ -29,7 +29,6 @@ public class MenuCommandLine {
         br = new BufferedReader(new InputStreamReader(System.in));
         printHeader();
         sD = selectDataset();
-        //System.out.println("RASTA " + sD);
         if (sD != -1) {
             loadCorrect = true;
         }
@@ -44,10 +43,8 @@ public class MenuCommandLine {
         loadCorrect = false;
         if (sD != -1) {
             sM = selectExecution();
-            //System.out.println("RASTA " + sM);
             if (sM == 0) {
                 sSM = selectSimilarityMeasure();
-                //System.out.println("RASTA " + sSM);
                 if (sSM != -1) {
                     loadCorrect = true;
                 }
@@ -90,14 +87,14 @@ public class MenuCommandLine {
         int re = -1;
         System.out.println("Type the model of the execution: [0-2]");
 
-        System.out.println("\t 0) - One similarity measure execution");
-        System.out.println("\t 1) - All similarities measure execution");
-        System.out.println("\t 2) - All similarities measure execution (Only Graphic)");
+        System.out.println("\t 1) - One similarity measure execution");
+        System.out.println("\t 2) - All similarities measure execution");
+        System.out.println("\t 3) - All similarities measure execution (Only Graphic)");
 
         try {
             int i = Integer.parseInt(br.readLine());
-            if (i > 2 || i < 0) {
-                System.err.println("Insert a value between 0-2.");
+            if (i > 3 || i < 1) {
+                System.err.println("Insert a value between 1-3.");
             } else {
                 re = i;
             }
@@ -106,21 +103,21 @@ public class MenuCommandLine {
         } catch (IOException ex) {
             System.err.println("Invalid Format!2");
         }
-        return re;
+        return re - 1;
     }
 
     private int selectDataset() {
         int re = -1;
-        System.out.println("Choise a dataset: [0-4]");
+        System.out.println("Choise a dataset: [1-5]");
 
         for (DatasetToRead dtr : DatasetToRead.values()) {
-            System.out.println("\t " + dtr.ordinal() + ") - " + dtr.name());
+            System.out.println("\t " + (dtr.ordinal() + 1) + ") - " + dtr.name());
         }
 
         try {
             int i = Integer.parseInt(br.readLine());
-            if (i > 4 || i < 0) {
-                System.err.println("Insert a value between 0-4.");
+            if (i > 5 || i < 1) {
+                System.err.println("Insert a value between 1-5.");
             } else {
                 re = i;
             }
@@ -129,23 +126,23 @@ public class MenuCommandLine {
         } catch (IOException ex) {
             System.err.println("Invalid Format!2");
         }
-        return re;
+        return re - 1;
     }
 
     private int selectSimilarityMeasure() {
         int re = -1;
         int position = 0;
-        System.out.println("Choise a similarity measure: [0-16]");
+        System.out.println("Choise a similarity measure: [1-17]");
 
         for (SimilarityMeasureFinal sMF : listSM) {
-            System.out.println("\t " + position + ") - " + sMF.getName());
+            System.out.println("\t " + (position + 1) + ") - " + sMF.getName());
             position++;
         }
 
         try {
             int i = Integer.parseInt(br.readLine());
-            if (i > 16 || i < 0) {
-                System.err.println("Insert a value between 0-16.");
+            if (i > 17 || i < 1) {
+                System.err.println("Insert a value between 1-17.");
             } else {
                 re = i;
             }
@@ -154,7 +151,7 @@ public class MenuCommandLine {
         } catch (IOException ex) {
             System.err.println("Invalid Format!2");
         }
-        return re;
+        return re - 1;
     }
 
 }
