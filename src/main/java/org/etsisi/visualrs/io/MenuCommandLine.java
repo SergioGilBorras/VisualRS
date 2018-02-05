@@ -76,7 +76,7 @@ public class MenuCommandLine {
         System.out.println(" ********************************************************");
         System.out.println(" ***                                                  ***");
         System.out.println(" ***        VisualRS - For recomender system          ***");
-        System.out.println(" ***           V1.0.1 - By Sergio Gil Borras          ***");
+        System.out.println(" ***           V1.0. - By Sergio Gil Borras          ***");
         System.out.println(" ***                                                  ***");
         System.out.println(" ***                 UPM - ETSISI - 2017              ***");
         System.out.println(" ***                                                  ***");

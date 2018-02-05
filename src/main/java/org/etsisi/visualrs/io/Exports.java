@@ -191,7 +191,7 @@ public class Exports {
             firstLayout.setNumIterations(750);
             firstLayout.setNumThreads(3);
             firstLayout.setEdgeCut(0.8f);
-            firstLayout.setRealTime(0.2f);
+            firstLayout.setRealTime(0.f);
             firstLayout.setRandSeed(-9139240299543417142l);
 
             firstLayout.setCooldownStage(15);
@@ -212,7 +212,7 @@ public class Exports {
             secondLayout.resetPropertiesValues();
             secondLayout.setGravity(1.0);
             secondLayout.setJitterTolerance(1.0);
-            secondLayout.setBarnesHutTheta(1.2);
+            secondLayout.setBarnesHutTheta(1.);
             secondLayout.setScalingRatio(2.0);
             secondLayout.setThreadsCount(3);
 
@@ -226,11 +226,11 @@ public class Exports {
             YifanHuLayout thirdLayout = new YifanHuLayout(null, new StepDisplacement(1f));
             thirdLayout.setGraphModel(graphModel);
             thirdLayout.resetPropertiesValues();
-            thirdLayout.setBarnesHutTheta(1.2f);
+            thirdLayout.setBarnesHutTheta(1.f);
             thirdLayout.setInitialStep(20f);
             thirdLayout.setOptimalDistance(100f);
             thirdLayout.setQuadTreeMaxLevel(10);
-            thirdLayout.setRelativeStrength(0.2f);
+            thirdLayout.setRelativeStrength(0.f);
             thirdLayout.setStepRatio(0.95f);
             thirdLayout.setConvergenceThreshold(0.0001f);
             thirdLayout.setAdaptiveCooling(true);

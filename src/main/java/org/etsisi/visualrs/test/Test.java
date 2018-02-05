@@ -141,7 +141,7 @@ public class Test {
                         System.out.println("\nYou can get the generated graphics in the DATA folder.");
                         break;
                     default:
-                        System.out.println("Sorry, you should fill correctly the menu.1");
+                        System.out.println("Sorry, you should fill correctly the menu.");
                 }
             } else {
                 System.out.println("Sorry, you should fill correctly the menu.");

@@ -73,7 +73,7 @@ public final class LoadData {
         this.file = file;
         if (hasRankMatrix()) {
             loadRankMatrix();
-            System.out.println("Matrix:: " + this.rankMatrix.rows + " X " + this.rankMatrix.columns);
+            System.out.println("Matrix size: " + this.rankMatrix.rows + " * " + this.rankMatrix.columns);
         } else {
             switch (DtR) {
                 case Netflix:
@@ -103,7 +103,7 @@ public final class LoadData {
      * of the movilens 1Mb file.
      */
     private void loadFileMl1m() throws Exception {
-        System.out.println("load from file movilens 1Mb");
+        System.out.println("Loading MovieLens 1M dataset...");
         int user = 0;
         int item = 0;
         double rank = 0;
@@ -165,7 +165,7 @@ public final class LoadData {
      * of the filmtrust file.
      */
     private void loadFileFilmTrustt() throws Exception {
-        System.out.println("load from file filmtrust");
+        System.out.println("Loading FilmTrust dataset...");
         int user = 0;
         int item = 0;
         double rank = 0;
@@ -227,7 +227,7 @@ public final class LoadData {
      * of the netflix file.
      */
     private void loadFileNf() throws Exception {
-        System.out.println("load from file netflix");
+        System.out.println("Loading Netflix dataset...");
         int user = 0;
         int item = 0;
         double rank = 0;
@@ -298,7 +298,7 @@ public final class LoadData {
      * of the bookcrossing file.
      */
     private void loadFileBooks() throws Exception {
-        System.out.println("load from file bookcrossing");
+        System.out.println("Loading BookCrossing dataset...");
         int user = 0;
         int item = 0;
         ArrayList<String> conversorISBN = new ArrayList<>();
@@ -391,7 +391,7 @@ public final class LoadData {
      * of the jester file.
      */
     private void loadFileJester() throws Exception {
-        System.out.println("load from file jester");
+        System.out.println("Loading Jester dataset...");
         int user = 0;
         int item = 0;
         double rank = 0;
@@ -446,7 +446,7 @@ public final class LoadData {
     }
 
     private void saveRankMatrix() {
-        System.out.println("save rank matrix..");
+        System.out.println("Saving rank matrix...");
         File f = new File("./data/" + file.getName());
         if (!f.exists()) {
             f.mkdirs();
@@ -465,7 +465,7 @@ public final class LoadData {
      * @param FCName String The name of the similarity function to use.
      */
     public void saveRankMatrix(String FCName) {
-        System.out.println("save rank matrix..");
+        System.out.println("Saving rank matrix...");
         File f = new File("./data/" + file.getName() + "/" + FCName);
         if (!f.exists()) {
             f.mkdirs();
@@ -479,7 +479,7 @@ public final class LoadData {
     }
 
     private void loadRankMatrix() {
-        System.out.println("load rank matrix..");
+        System.out.println("Loading rank matrix...");
         try {
             if (rankMatrix == null) {
                 rankMatrix = new DoubleMatrix();
@@ -497,7 +497,7 @@ public final class LoadData {
      * @param FCName String The name of the similarity function to use.
      */
     public void loadRankMatrix(String FCName) {
-        System.out.println("load rank matrix..");
+        System.out.println("Loading rank matrix...");
         try {
             rankMatrix = new DoubleMatrix();
             rankMatrix.load("./data/" + file.getName() + "/" + FCName + "/votosMatrix.dat");
