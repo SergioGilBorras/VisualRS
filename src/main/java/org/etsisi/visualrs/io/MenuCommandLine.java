@@ -85,7 +85,7 @@ public class MenuCommandLine {
 
     private int selectExecution() {
         int re = -1;
-        System.out.println("Type the model of the execution: [0-2]");
+        System.out.println("Type the model of the execution: [1-3]");
 
         System.out.println("\t 1) - One similarity measure execution");
         System.out.println("\t 2) - All similarities measure execution");
