@@ -197,7 +197,7 @@ Main Packages are:
  
 ## Main Classes
 
-This section summarizes the framework’s main classes.
+This section summarizes the framework’s main classes. Any additional information can be found in [javadoc documentation](https://sergiogilborras.github.io/VisualRS/).
 
 ### Main classes structure
 
