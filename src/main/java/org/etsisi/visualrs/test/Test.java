@@ -162,16 +162,16 @@ public class Test {
             case Jester:
                 file = new File(this.getClass().getResource("/datasets/jester-data-1.csv").toURI());
                 break;
-            case Movielens:
+            case MovieLens:
                 file = new File(this.getClass().getResource("/datasets/ml1m-ratings.txt").toURI());
                 break;
             case BookCrossing:
                 file = new File(this.getClass().getResource("/datasets/BX-Book-Ratings.csv").toURI());
                 break;
-            case Filmtrus:
+            case FilmTrust:
                 file = new File(this.getClass().getResource("/datasets/filmtrust-ratings.txt").toURI());
                 break;
-            case NetFlix:
+            case Netflix:
                 file = new File(this.getClass().getResource("/datasets/nf-ratings.txt").toURI());
                 break;
             default:

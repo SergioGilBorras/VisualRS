@@ -76,14 +76,14 @@ public final class LoadData {
             System.out.println("Matrix:: " + this.rankMatrix.rows + " X " + this.rankMatrix.columns);
         } else {
             switch (DtR) {
-                case NetFlix:
+                case Netflix:
                     loadFileNf();
                     break;
-                case Movielens:
+                case MovieLens:
                     loadFileMl1m();
                     break;
-                case Filmtrus:
-                    loadFileFilmtrust();
+                case FilmTrust:
+                    loadFileFilmTrustt();
                     break;
                 case Jester:
                     loadFileJester();
@@ -164,7 +164,7 @@ public final class LoadData {
      * @throws Exception Different exceptions can be throws here with the load
      * of the filmtrust file.
      */
-    private void loadFileFilmtrust() throws Exception {
+    private void loadFileFilmTrustt() throws Exception {
         System.out.println("load from file filmtrust");
         int user = 0;
         int item = 0;
@@ -531,13 +531,13 @@ public final class LoadData {
     public enum DatasetToRead {
 
         /**
-         * The datasert is from NetFlix
+         * The datasert is from Netflix
          */
-        NetFlix,
+        Netflix,
         /**
-         * The datasert is from Movielens
+         * The datasert is from MovieLens
          */
-        Movielens,
+        MovieLens,
         /**
          * The datasert is from BookCrossing
          */
@@ -545,7 +545,7 @@ public final class LoadData {
         /**
          * The dataserte is from filmtrus
          */
-        Filmtrus,
+        FilmTrust,
         /**
          * The datasert is from jester
          */
