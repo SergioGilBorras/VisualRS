@@ -160,22 +160,22 @@ public class Test {
         File file;
         switch (dts) {
             case Jester:
-                file = new File(this.getClass().getResource("/datasets/jester-data-1.csv").getPath());
+                file = new File(this.getClass().getResource("/datasets/jester-data-1.csv").toURI());
                 break;
             case Movielens:
-                file = new File(this.getClass().getResource("/datasets/ml1m-ratings.txt").getPath());
+                file = new File(this.getClass().getResource("/datasets/ml1m-ratings.txt").toURI());
                 break;
             case BookCrossing:
-                file = new File(this.getClass().getResource("/datasets/BX-Book-Ratings.csv").getPath());
+                file = new File(this.getClass().getResource("/datasets/BX-Book-Ratings.csv").toURI());
                 break;
             case Filmtrus:
-                file = new File(this.getClass().getResource("/datasets/filmtrust-ratings.txt").getPath());
+                file = new File(this.getClass().getResource("/datasets/filmtrust-ratings.txt").toURI());
                 break;
             case NetFlix:
-                file = new File(this.getClass().getResource("/datasets/nf-ratings.txt").getPath());
+                file = new File(this.getClass().getResource("/datasets/nf-ratings.txt").toURI());
                 break;
             default:
-                file = new File(this.getClass().getResource("/datasets/filmtrust-ratings-s.txt").getPath());
+                file = new File(this.getClass().getResource("/datasets/filmtrust-ratings-s.txt").toURI());
                 break;
         }
         MV = new LoadData(file, dts);
