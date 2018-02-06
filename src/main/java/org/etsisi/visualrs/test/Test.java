@@ -163,7 +163,7 @@ public class Test {
                 file = new File(this.getClass().getResource("/datasets/Jester.csv").toURI());
                 break;
             case BookCrossing:
-                file = new File(this.getClass().getResource("/datasets/BookCroosing.csv").toURI());
+                file = new File(this.getClass().getResource("/datasets/BookCrossing.csv").toURI());
                 break;
             case FilmTrust:
                 file = new File(this.getClass().getResource("/datasets/FilmTrust.txt").toURI());
