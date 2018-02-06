@@ -42,7 +42,7 @@ We can also clone it from Git using the command:
 git clone https://github.com/SergioGilBorras/VisualRS.git
 ```
 
-**Warning**: [`git-lfs`](https://git-lfs.github.com/) must be installed to download testing datasets.
+**Warning**: [`git-lfs`](https://git-lfs.github.com/) must be installed in order to download testing datasets.
 
 ### Maven
 
@@ -172,6 +172,10 @@ System.out.println(QMC.getName() + " .. " + QMC.calculate());
 Exports graphicsGephi = new Exports(MRM);
 GraphicsGephi.execute(TypeFileExport.PDF);
 ```
+
+Following figure summarizes the process sequence to generate VisualRS results. We can load different current open RS datasets, using LoadData class, from the `io` package. Then we choose the similarity measure that will relate users or items. To convert the rating matrix to a graph, we use the `SimilarityMatrix` class, into the models package; the same package provides us with the class `MaximumSpanningTreeMatrix` to turn the graph into a tree. We can test each information tree quality using node-based and histogram-based quality measures or an aggregation, composition and modification mix; package `qualityMeasures` contains the necessary classes. Finally, results can be graphically shown using the Export class from the `io` package. Additionally, tabular and text formats are supported.
+
+![Process sequence to generate VisualRS results](http://rs.etsisi.upm.es/visualrs/image010.jpg "Process sequence to generate VisualRS results")
 
 ## Package Structure
 
@@ -378,7 +382,9 @@ The intermediate matrices results and the different export files will be saved i
 
 ## Results
 
-Next we show the resulting table from the option 1 execution: "All similarities measures execution" corresponding to the Test class `exec_batch ()` method. The table shows the obtained values applying all the implemented quality measures to all the implemented similarity measures. The dataset chosen has been MovieLens 1Mb. The set of implemented quality measures is:
+Next we show the resulting table from the option 1 execution: "All similarities measures execution" corresponding to the Test class `exec_batch ()` method.
+
+The table shows a complete set of quality measures results when all the implemented similarity measures are applied to the MovieLens 1M dataset. Red values represent inadequate results, while blue shadowed cells show the best results. This experiment shows the superiority of the `JMSD` and `Jaccard * Cosine` metrics to represent MovieLens RS information. The set of implemented quality measures is:
 
 * OUT ≈ CC: Correlation between OUT and Closeness central
 * OUT ≈ BC: Correlation between OUT and Between centrality
@@ -393,7 +399,7 @@ Next we show the resulting table from the option 1 execution: "All similarities 
 
 ![Results example](http://rs.etsisi.upm.es/visualrs/image008.png "Results example")
 
-As an example, we show the tree graph obtained by selecting the data set Movielens 1Mb and the similarity measure JMSD:
+As an example, we show the tree graph obtained by selecting the data set MovieLens 1M and the similarity measure JMSD:
 
 ![Chart example](http://rs.etsisi.upm.es/visualrs/image009.png "Chart example")
  
@@ -405,7 +411,7 @@ The following datasets are included into the VisualRS framework (datasets direct
 
 * `Jester.csv` [(link)](http://www.ieor.berkeley.edu/~goldberg/jester-data/): Anonymous Ratings Data from the Jester Online Joke Recommender System.
 
-* `MovieLens1M.txt` [(link)](https://movielens.org/): Offers collaborative filtering (CF) datasets for movies. MovieLens datasets come in different sizes. Also links to the older EachMovie dataset that can be obtained upon request from Compaq.
+* `MovieLens1M.txt` [(link)](https://MovieLens.org/): Offers collaborative filtering (CF) datasets for movies. MovieLens datasets come in different sizes. Also links to the older EachMovie dataset that can be obtained upon request from Compaq.
 
 * `FilmTrust.txt` [(link)](https://www.librec.net/datasets.html): FilmTrust is a small dataset crawled from the entire FilmTrust website in June, 2011.
 
