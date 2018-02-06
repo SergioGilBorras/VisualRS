@@ -30,13 +30,13 @@ VisualRS can be used:
 
 ### Download
 
-This project is hosted in a GIT repository. We can download it from the web:
+This project is hosted in a Git repository. We can download it from the web:
 
 ```
 https://github.com/SergioGilBorras/VisualRS
 ```
 
-We can also clone it from GIT using the command:
+We can also clone it from Git using the command:
 
 ```
 git clone https://github.com/SergioGilBorras/VisualRS.git
