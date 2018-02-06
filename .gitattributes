@@ -1,3 +1,5 @@
-*.txt filter=lfs diff=lfs merge=lfs -text
-src/main/resources/datasets/BX-Book-Ratings.csv filter=lfs diff=lfs merge=lfs -text
 src/main/resources/datasets/BookCroosing.csv filter=lfs diff=lfs merge=lfs -text
+src/main/resources/datasets/FilmTrust.txt filter=lfs diff=lfs merge=lfs -text
+src/main/resources/datasets/Jester.csv filter=lfs diff=lfs merge=lfs -text
+src/main/resources/datasets/MovieLens1M.txt filter=lfs diff=lfs merge=lfs -text
+src/main/resources/datasets/Netflix.txt filter=lfs diff=lfs merge=lfs -text
