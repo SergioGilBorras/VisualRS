@@ -42,6 +42,8 @@ We can also clone it from Git using the command:
 git clone https://github.com/SergioGilBorras/VisualRS.git
 ```
 
+**Warning**: [`git-lfs`](https://git-lfs.github.com/) must be installed to download testing datasets.
+
 ### Maven
 
 This Project has been developed using Maven. In order to compile and execute the Project, through maven, we will follow the following commands:
