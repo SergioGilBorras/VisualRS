@@ -1,3 +1,2 @@
-
-
 *.txt filter=lfs diff=lfs merge=lfs -text
+src/main/resources/datasets/BX-Book-Ratings.csv filter=lfs diff=lfs merge=lfs -text
