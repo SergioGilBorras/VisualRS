@@ -397,12 +397,14 @@ As an example, we show the tree graph obtained by selecting the data set Moviele
  
 ## Datasets
 
-The following datasets are included into the VisualRS framework (folder datasets):
+The following datasets are included into the VisualRS framework (datasets directory):
 
-* `BX-Book-Ratings.csv` [(link)](http://www2.informatik.uni-freiburg.de/~cziegler/BX/): Contains the book rating information. Ratings (`Book-Rating`) are either explicit, expressed on a scale from 1-10 (higher values denoting higher appreciation), or implicit, expressed by 0.
+* `BookCrossing.csv` [(link)](http://www2.informatik.uni-freiburg.de/~cziegler/BX/): Contains the book rating information. Ratings (`Book-Rating`) are either explicit, expressed on a scale from 1-10 (higher values denoting higher appreciation), or implicit, expressed by 0.
 
-* `jester-data-1.csv` [(link)](http://www.ieor.berkeley.edu/~goldberg/jester-data/): Anonymous Ratings Data from the Jester Online Joke Recommender System.
+* `Jester.csv` [(link)](http://www.ieor.berkeley.edu/~goldberg/jester-data/): Anonymous Ratings Data from the Jester Online Joke Recommender System.
 
-* `ml1m-ratings.txt` [(link)](https://movielens.org/): Offers collaborative filtering (CF) datasets for movies. MovieLens datasets come in different sizes. Also links to the older EachMovie dataset that can be obtained upon request from Compaq.
-* `filmtrust-ratings.txt` [(link)](https://www.librec.net/datasets.html): FilmTrust is a small dataset crawled from the entire FilmTrust website in June, 2011.
-* `nf-ratings.txt` [(prize link)](http://netflixprize.com) & [(dataset link)](https://www.kaggle.com/netflix-inc/netflix-prize-data): Netflix held the Netflix Prize open competition for the best algorithm to predict user ratings for films. The grand prize was $1,000,000 and was won by BellKor's Pragmatic Chaos team. This is the dataset that was used in that competition.
+* `MovieLens1M.txt` [(link)](https://movielens.org/): Offers collaborative filtering (CF) datasets for movies. MovieLens datasets come in different sizes. Also links to the older EachMovie dataset that can be obtained upon request from Compaq.
+
+* `FilmTrust.txt` [(link)](https://www.librec.net/datasets.html): FilmTrust is a small dataset crawled from the entire FilmTrust website in June, 2011.
+
+* `Netflix.txt` [(prize link)](http://netflixprize.com) & [(dataset link)](https://www.kaggle.com/netflix-inc/netflix-prize-data): Netflix held the Netflix Prize open competition for the best algorithm to predict user ratings for films. The grand prize was $1,000,000 and was won by BellKor's Pragmatic Chaos team. This is the dataset that was used in that competition.
