@@ -99,16 +99,16 @@ public class MenuCommandLine {
                 re = i;
             }
         } catch (NumberFormatException ex) {
-            System.err.println("Invalid Format!1");
+            System.err.println("Invalid Format!");
         } catch (IOException ex) {
-            System.err.println("Invalid Format!2");
+            System.err.println("Invalid Format!");
         }
         return re - 1;
     }
 
     private int selectDataset() {
         int re = -1;
-        System.out.println("Choise a dataset: [1-5]");
+        System.out.println("Choose a dataset: [1-5]");
 
         for (DatasetToRead dtr : DatasetToRead.values()) {
             System.out.println("\t " + (dtr.ordinal() + 1) + ") - " + dtr.name());
@@ -122,9 +122,9 @@ public class MenuCommandLine {
                 re = i;
             }
         } catch (NumberFormatException ex) {
-            System.err.println("Invalid Format!1");
+            System.err.println("Invalid Format!");
         } catch (IOException ex) {
-            System.err.println("Invalid Format!2");
+            System.err.println("Invalid Format!");
         }
         return re - 1;
     }
@@ -132,7 +132,7 @@ public class MenuCommandLine {
     private int selectSimilarityMeasure() {
         int re = -1;
         int position = 0;
-        System.out.println("Choise a similarity measure: [1-17]");
+        System.out.println("Choose a similarity measure: [1-17]");
 
         for (SimilarityMeasureFinal sMF : listSM) {
             System.out.println("\t " + (position + 1) + ") - " + sMF.getName());
@@ -147,9 +147,9 @@ public class MenuCommandLine {
                 re = i;
             }
         } catch (NumberFormatException ex) {
-            System.err.println("Invalid Format!1");
+            System.err.println("Invalid Format!");
         } catch (IOException ex) {
-            System.err.println("Invalid Format!2");
+            System.err.println("Invalid Format!");
         }
         return re - 1;
     }
