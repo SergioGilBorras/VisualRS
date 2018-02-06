@@ -162,11 +162,8 @@ public class Test {
             case Jester:
                 file = new File(this.getClass().getResource("/datasets/Jester.csv").toURI());
                 break;
-            case MovieLens:
-                file = new File(this.getClass().getResource("/datasets/MovieLens1M.txt").toURI());
-                break;
             case BookCrossing:
-                file = new File(this.getClass().getResource("/datasets/BookCrossing.csv").toURI());
+                file = new File(this.getClass().getResource("/datasets/BookCroosing.csv").toURI());
                 break;
             case FilmTrust:
                 file = new File(this.getClass().getResource("/datasets/FilmTrust.txt").toURI());
@@ -174,6 +171,8 @@ public class Test {
             case Netflix:
                 file = new File(this.getClass().getResource("/datasets/Netflix.txt").toURI());
                 break;
+            default:
+                file = new File(this.getClass().getResource("/datasets/MovieLens1M.txt").toURI());
         }
         MV = new LoadData(file, dts);
 
