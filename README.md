@@ -175,7 +175,7 @@ GraphicsGephi.execute(TypeFileExport.PDF);
 
 Following figure summarizes the process sequence to generate VisualRS results. We can load different current open RS datasets, using LoadData class, from the `io` package. Then we choose the similarity measure that will relate users or items. To convert the rating matrix to a graph, we use the `SimilarityMatrix` class, into the models package; the same package provides us with the class `MaximumSpanningTreeMatrix` to turn the graph into a tree. We can test each information tree quality using node-based and histogram-based quality measures or an aggregation, composition and modification mix; package `qualityMeasures` contains the necessary classes. Finally, results can be graphically shown using the Export class from the `io` package. Additionally, tabular and text formats are supported.
 
-![Process sequence to generate VisualRS results](http://rs.etsisi.upm.es/visualrs/image010.jpg "Process sequence to generate VisualRS results")
+![Process sequence to generate VisualRS results](http://rs.etsisi.upm.es/visualrs/image010.png "Process sequence to generate VisualRS results")
 
 ## Package Structure
 
