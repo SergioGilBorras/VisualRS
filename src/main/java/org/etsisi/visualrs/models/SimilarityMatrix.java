@@ -75,8 +75,8 @@ public final class SimilarityMatrix {
      * Constructor of the class. It generates similarity matrix from the rank
      * matrix and a similarity measure.
      *
-     * @param FC SimilarityMeasureFinal The similarity measure final to
- generate the similarity matrix.
+     * @param FC SimilarityMeasureFinal The similarity measure final to generate
+     * the similarity matrix.
      * @param MV LoadData The rank matrix to generate the similarity matrix.
      * @throws Exception Different exceptions can be throws here with the
      * generation of the similarity matrix.
@@ -112,7 +112,7 @@ public final class SimilarityMatrix {
             }
         }
         if (columnsToRemove.size() > 0) {
-            System.out.println("New matrix:: " + itemOk + " x " + itemOk);
+            //System.out.println("New matrix:: " + itemOk + " x " + itemOk);
             DoubleMatrix correlationMatrixAux = new DoubleMatrix(itemOk, itemOk);
             org.etsisi.visualrs.matrices.DoubleMatrix votosMatrixAux = new org.etsisi.visualrs.matrices.DoubleMatrix(votosMatrix.rows, itemOk);
             votosMatrixAux.fill(votosMatrix.getFill());
@@ -146,13 +146,22 @@ public final class SimilarityMatrix {
         similarityMatrix = new DoubleMatrix(votosMatrix.columns, votosMatrix.columns);
         similarityMatrix.fill(-99);
 
-        long tIni = System.currentTimeMillis();
-
+        //long tIni = System.currentTimeMillis();
+        System.out.println("Progress:");
+        long oldProgress = 100;
         for (int item = 0; item < votosMatrix.columns; item++) {
 
-            if (item % 100 == 0) {
-                System.out.println("SIM load:: " + item + " :: " + (System.currentTimeMillis() - tIni));
-                tIni = System.currentTimeMillis();
+            //if (item % 100 == 0) {
+            //    System.out.println("SIM load:: " + item + " :: " + (System.currentTimeMillis() - tIni));
+            //    tIni = System.currentTimeMillis();
+            //}
+            double progress = ((item * 100) / votosMatrix.columns);
+            if (Math.round(progress) % 10 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
+                System.out.println(Math.round(progress) + "%");
+                oldProgress = Math.round(progress);
+            } else if (Math.round(progress) % 2 == 0 && Math.round(progress) != oldProgress) {
+                System.out.print(".");
+                oldProgress = Math.round(progress);
             }
 
             double[] ColumItem = votosMatrix.getColumn(item).toArray();
@@ -168,10 +177,12 @@ public final class SimilarityMatrix {
             }
 
         }
+
+        System.out.println("100%");
     }
 
     private void saveSimilarityMatrix() {
-        System.out.println("save similarity matrix..");
+        System.out.println("Save similarity matrix..");
         File f = new File("./data/" + MV.getFileName() + "/" + FC.getName());
         if (!f.exists()) {
             f.mkdirs();
@@ -185,7 +196,7 @@ public final class SimilarityMatrix {
     }
 
     private void loadSimilarityMatrix() {
-        System.out.println("load similarity matrix..");
+        System.out.println("Load similarity matrix..");
         try {
             if (similarityMatrix == null) {
                 similarityMatrix = new DoubleMatrix();

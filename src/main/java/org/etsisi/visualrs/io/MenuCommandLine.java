@@ -6,6 +6,7 @@
 package org.etsisi.visualrs.io;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -23,12 +24,16 @@ public class MenuCommandLine {
     private int sD = -1;
     private int sM = -1;
     private int sSM = -1;
+    private String filePath = "";
     private boolean loadCorrect = false;
 
     public MenuCommandLine() {
         br = new BufferedReader(new InputStreamReader(System.in));
         printHeader();
         sD = selectDataset();
+        if (sD == 99) {
+            filePath = loadFilePathMenu();
+        }
         if (sD != -1) {
             loadCorrect = true;
         }
@@ -36,6 +41,14 @@ public class MenuCommandLine {
 
     public boolean isLoadCorrect() {
         return loadCorrect;
+    }
+
+    public boolean hasFilePath() {
+        return (!filePath.equalsIgnoreCase(""));
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 
     public int getMode(ArrayList<SimilarityMeasureFinal> listSM) {
@@ -113,10 +126,13 @@ public class MenuCommandLine {
         for (DatasetToRead dtr : DatasetToRead.values()) {
             System.out.println("\t " + (dtr.ordinal() + 1) + ") - " + dtr.name());
         }
+        System.out.println("\t 99) - Path to file.");
 
         try {
             int i = Integer.parseInt(br.readLine());
-            if (i > 5 || i < 1) {
+            if (i == 99) {
+                re = 100;
+            } else if (i > 5 || i < 1) {
                 System.err.println("Insert a value between 1-5.");
             } else {
                 re = i;
@@ -152,6 +168,22 @@ public class MenuCommandLine {
             System.err.println("Invalid Format!");
         }
         return re - 1;
+    }
+
+    private String loadFilePathMenu() {
+        System.out.println("Write the full path to the dataset: ");
+        try {
+            String DsFilePath = br.readLine();
+            File f = new File(DsFilePath);
+            if (!f.exists()) {
+                System.out.println("The path to the dataset is not correct. ");
+                return loadFilePathMenu();
+            }
+            return DsFilePath;
+        } catch (IOException ex) {
+            System.err.println("Invalid Format!");
+        }
+        return loadFilePathMenu();
     }
 
 }

@@ -23,7 +23,8 @@ import org.etsisi.visualrs.similarityMeasureBase.SM;
  *
  * @author Sergio Gil Borras
  * @version 1.0 - August 2017
- * @see "Related to article 'Tree graph visualization of recommender systems related information'" 
+ * @see "Related to article 'Tree graph visualization of recommender systems
+ * related information'"
  */
 public class FSM extends SimilarityMeasureFinal {
 
@@ -38,7 +39,7 @@ public class FSM extends SimilarityMeasureFinal {
      */
     public FSM(GenerateSimilarityVectorsSimple gvss) throws Exception {
         this.name = "SM Correlation";
-        pc = new SM(4, gvss.SimilarityPositive(), gvss.SimilarityNegative());
+        pc = new SM(gvss.getBorder(), gvss.SimilarityPositive(), gvss.SimilarityNegative());
     }
 
     @Override

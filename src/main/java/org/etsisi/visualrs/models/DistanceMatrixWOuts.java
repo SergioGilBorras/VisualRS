@@ -25,7 +25,8 @@ import org.jblas.DoubleMatrix;
  *
  * @author Sergio Gil Borras
  * @version 1.0 - August 2017
- * @see "Related to article 'Tree graph visualization of recommender systems related information'" 
+ * @see "Related to article 'Tree graph visualization of recommender systems
+ * related information'"
  */
 public class DistanceMatrixWOuts {
 
@@ -43,7 +44,8 @@ public class DistanceMatrixWOuts {
     }
 
     /**
-     * Calculate the tree distance matrix with weight =  number of branch of each node.
+     * Calculate the tree distance matrix with weight = number of branch of each
+     * node.
      *
      * @param MRM Maximum spanning tree matrix
      * @param nouts number of branch of each node. Quality measure.
@@ -66,15 +68,26 @@ public class DistanceMatrixWOuts {
         System.out.println("Generate distace matrix wouts");
         treeDistanceMatrixWouts = new DoubleMatrix(primMatrix.columns, primMatrix.columns);
         treeDistanceMatrixWouts.fill(-1);
-        long time = System.currentTimeMillis();
+        //long time = System.currentTimeMillis();
+        System.out.println("Progress:");
+        long oldProgress = 100;
         for (int item = 0; item < primMatrix.columns; item++) {
-            if (item % 500 == 0) {
-                System.out.println("Round Item:: " + item + " - " + (System.currentTimeMillis() - time));
-                time = System.currentTimeMillis();
+            //if (item % 500 == 0) {
+            //    System.out.println("Round Item:: " + item + " - " + (System.currentTimeMillis() - time));
+            //    time = System.currentTimeMillis();
+            //}
+            double progress = ((item * 100) / primMatrix.columns);
+            if (Math.round(progress) % 10 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
+                System.out.println(Math.round(progress) + "%");
+                oldProgress = Math.round(progress);
+            } else if (Math.round(progress) % 2 == 0 && Math.round(progress) != oldProgress) {
+                System.out.print(".");
+                oldProgress = Math.round(progress);
             }
             treeDistanceMatrixWouts.putColumn(item, new DoubleMatrix(DIJKSTRAWouts(item)));
             //treeDistanceMatrixWouts.putColumn(item, DIJKSTRAWouts(item));
         }
+        System.out.println("100%");
     }
 
     private double[] DIJKSTRAWouts(int s) throws Exception {

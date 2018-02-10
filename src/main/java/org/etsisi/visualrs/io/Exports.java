@@ -21,6 +21,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 import org.gephi.graph.api.Edge;
 import org.gephi.graph.api.GraphController;
 import org.gephi.graph.api.GraphModel;
@@ -42,6 +45,7 @@ import org.gephi.project.api.Workspace;
 import org.openide.util.Lookup;
 import static org.etsisi.visualrs.io.Exports.TypeFileExport.*;
 import org.etsisi.visualrs.models.MaximumSpanningTreeMatrix;
+import org.gephi.preview.types.DependantOriginalColor;
 //import org.etsisi.visualrs.matrices.DoubleMatrix;
 import org.jblas.DoubleMatrix;
 
@@ -88,7 +92,7 @@ public class Exports {
      */
     public void execute(TypeFileExport TFE) throws Exception {
         this.TFE = TFE;
-        System.out.println("--:: Grafico " + correlationName + " to " + TFE.name() + "::--");
+        System.out.println("--:: Graphics " + correlationName + " to " + TFE.name() + "::--");
 
         if (TFE == CSV) {
             saveGephiCSV();
@@ -127,7 +131,7 @@ public class Exports {
             bw.close();
         } catch (Exception e) {
             //e.printStackTrace();
-            System.out.println("Exception: " + e.getMessage());
+            System.out.println("Exception (Export): " + e.getMessage());
         }
     }
 
@@ -137,6 +141,9 @@ public class Exports {
      * @throws Exception
      */
     private void saveGephiGrafico() throws Exception {
+        Logger rootLogger = LogManager.getLogManager().getLogger("");
+        rootLogger.setLevel(Level.OFF);
+
         if (undirectedGraph == null) {
             ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
             pc.newProject();
@@ -150,9 +157,9 @@ public class Exports {
             for (int i = 0; i < primMatrix.columns; i++) {
                 //Create  nodes
                 Node n0 = graphModel.factory().newNode("n" + i);
-                n0.setLabel("No" + i);
-                n0.setSize(1f);
-                n0.setAlpha(0.5f);
+                n0.setLabel(String.valueOf(i));
+                n0.setSize(3f);
+                n0.setAlpha(0f);
                 n0.setColor(Color.BLACK);
                 undirectedGraph.addNode(n0);
             }
@@ -191,7 +198,7 @@ public class Exports {
             firstLayout.setNumIterations(750);
             firstLayout.setNumThreads(3);
             firstLayout.setEdgeCut(0.8f);
-            firstLayout.setRealTime(0.f);
+            firstLayout.setRealTime(0.2f);
             firstLayout.setRandSeed(-9139240299543417142l);
 
             firstLayout.setCooldownStage(15);
@@ -212,7 +219,7 @@ public class Exports {
             secondLayout.resetPropertiesValues();
             secondLayout.setGravity(1.0);
             secondLayout.setJitterTolerance(1.0);
-            secondLayout.setBarnesHutTheta(1.);
+            secondLayout.setBarnesHutTheta(1.2);
             secondLayout.setScalingRatio(2.0);
             secondLayout.setThreadsCount(3);
 
@@ -226,11 +233,11 @@ public class Exports {
             YifanHuLayout thirdLayout = new YifanHuLayout(null, new StepDisplacement(1f));
             thirdLayout.setGraphModel(graphModel);
             thirdLayout.resetPropertiesValues();
-            thirdLayout.setBarnesHutTheta(1.f);
+            thirdLayout.setBarnesHutTheta(1.2f);
             thirdLayout.setInitialStep(20f);
             thirdLayout.setOptimalDistance(100f);
             thirdLayout.setQuadTreeMaxLevel(10);
-            thirdLayout.setRelativeStrength(0.f);
+            thirdLayout.setRelativeStrength(0.2f);
             thirdLayout.setStepRatio(0.95f);
             thirdLayout.setConvergenceThreshold(0.0001f);
             thirdLayout.setAdaptiveCooling(true);
@@ -244,9 +251,10 @@ public class Exports {
 
             model.getProperties().putValue(PreviewProperty.SHOW_NODE_LABELS, Boolean.TRUE);
             model.getProperties().putValue(PreviewProperty.SHOW_EDGE_LABELS, Boolean.TRUE);
+            model.getProperties().putValue(PreviewProperty.NODE_LABEL_COLOR, new DependantOriginalColor(Color.GRAY));
             model.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(Color.BLACK));
             model.getProperties().putValue(PreviewProperty.EDGE_THICKNESS, 0.3f);
-            model.getProperties().putValue(PreviewProperty.NODE_LABEL_FONT, model.getProperties().getFontValue(PreviewProperty.NODE_LABEL_FONT).deriveFont(12f));
+            model.getProperties().putValue(PreviewProperty.NODE_LABEL_FONT, model.getProperties().getFontValue(PreviewProperty.NODE_LABEL_FONT).deriveFont(16f));
             model.getProperties().putValue(PreviewProperty.NODE_LABEL_PROPORTIONAL_SIZE, Boolean.TRUE);
             model.getProperties().putValue(PreviewProperty.NODE_BORDER_WIDTH, 1);
             model.getProperties().putValue(PreviewProperty.NODE_BORDER_COLOR, new DependantColor(Color.BLACK));
@@ -261,9 +269,9 @@ public class Exports {
             } else if (TFE == SVG) {
                 ec.exportFile(new File("./data/" + fileName + "/" + correlationName + "/gephi_" + correlationName + ".svg"));
             }
-        } catch (IOException ex) {
-            //ex.printStackTrace();
-            return;
+        } catch (IOException e) {
+            //e.printStackTrace();
+            System.out.println("Exception (Export): " + e.getMessage());
         }
     }
 

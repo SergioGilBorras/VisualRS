@@ -26,7 +26,8 @@ import org.jblas.DoubleMatrix;
  *
  * @author Sergio Gil Borras
  * @version 1.0 - August 2017
- * @see "Related to article 'Tree graph visualization of recommender systems related information'" 
+ * @see "Related to article 'Tree graph visualization of recommender systems
+ * related information'"
  */
 public final class MaximumSpanningTreeMatrix {
 
@@ -61,7 +62,8 @@ public final class MaximumSpanningTreeMatrix {
     }
 
     /**
-     * Constructor of the class. It generates maximum spanning tree matrix from the similarity matrix.
+     * Constructor of the class. It generates maximum spanning tree matrix from
+     * the similarity matrix.
      *
      * @param MC SimilarityMatrix The similarity matrix to use.
      * @throws Exception Different exceptions can be throws here with the
@@ -112,14 +114,15 @@ public final class MaximumSpanningTreeMatrix {
         }
 
         novisitados.remove(nMediaCIndex);
-        System.out.println("NODO Ini Prim: " + nMediaCIndex);
+        //System.out.println("NODO Ini Prim: " + nMediaCIndex);
 
         boolean[] avisitados = new boolean[correlationMatrix.columns];
         Arrays.fill(avisitados, false);
         avisitados[nMediaCIndex] = true;
         int nvisitados = 1;
         visitados.add(nMediaCIndex);
-
+        System.out.println("Progress:");
+        long oldProgress = 100;
         while (nvisitados < correlationMatrix.columns) {
 
             //Collections.shuffle(visitados);
@@ -129,10 +132,9 @@ public final class MaximumSpanningTreeMatrix {
                     if (!Objects.equals(a, v) && !avisitados[a]) {
                         newMAX = correlationMatrix.get(a, v);
 
-                        if (Double.isNaN(newMAX)) {
-                            System.err.println("isNaN::" + a + "::" + v + " - " + MAX + "::" + newMAX);
-                        }
-
+                        //if (Double.isNaN(newMAX)) {
+                        //    System.err.println("isNaN::" + a + "::" + v + " - " + MAX + "::" + newMAX);
+                        //}
                         if (MAX < newMAX) {
                             RowMIN = a;
                             ColMIN = v;
@@ -143,20 +145,29 @@ public final class MaximumSpanningTreeMatrix {
                 }
             }
             MST += MAX;
-            if (nvisitados % 500 == 0) {
-                System.err.println("visited.size::" + nvisitados + " _ " + novisitados.size());
-            }
-            if (avisitados[RowMIN]) {
-                System.err.println("visited.size::" + nvisitados + " _ " + novisitados.size());
-                System.err.println("DUPLICATE::" + RowMIN + "::" + ColMIN + " - " + MAX + "::" + (-Double.MAX_VALUE));
-                System.err.println("NO VISITED::" + novisitados);
+            //if (nvisitados % 500 == 0) {
+            //    System.err.println("visited.size::" + nvisitados + " _ " + novisitados.size());
+            //}
+
+            double progress = ((nvisitados * 100) / correlationMatrix.columns);
+            if (Math.round(progress) % 10 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
+                System.out.println(Math.round(progress) + "%");
+                oldProgress = Math.round(progress);
+            } else if (Math.round(progress) % 2 == 0 && Math.round(progress) != oldProgress) {
+                System.out.print(".");
+                oldProgress = Math.round(progress);
             }
 
+            //if (avisitados[RowMIN]) {
+            //    System.err.println("visited.size::" + nvisitados + " _ " + novisitados.size());
+            //    System.err.println("DUPLICATE::" + RowMIN + "::" + ColMIN + " - " + MAX + "::" + (-Double.MAX_VALUE));
+            //    System.err.println("NO VISITED::" + novisitados);
+            //}
             visitados.add(RowMIN);
-            int as = novisitados.remove(novisitados.indexOf(RowMIN));
-            if (as != RowMIN) {
-                System.err.println("ERROR :: novisitados.remove");
-            }
+            //int as = novisitados.remove(novisitados.indexOf(RowMIN));
+            //if (as != RowMIN) {
+            //    System.err.println("ERROR :: novisitados.remove");
+            //}
             avisitados[RowMIN] = true;
             maximumSpanningTreeMatrix.put(RowMIN, ColMIN, MAX);
             maximumSpanningTreeMatrix.put(ColMIN, RowMIN, MAX);
@@ -164,14 +175,16 @@ public final class MaximumSpanningTreeMatrix {
             nvisitados++;
 
         }
-        System.err.println("NO VISITED::" + novisitados);
-        System.out.println("1-SpanningTree.. Total Weight::" + MST);
-        System.out.println("1-SpanningTree.. AVG Weight::" + (MST / maximumSpanningTreeMatrix.rows));
+
+        System.out.println("100%");
+        //System.err.println("NO VISITED::" + novisitados);
+        //System.out.println("1-SpanningTree.. Total Weight::" + MST);
+        //System.out.println("1-SpanningTree.. AVG Weight::" + (MST / maximumSpanningTreeMatrix.rows));
         return MST;
     }
 
     private void saveMaximumSpanningTreeMatrix() {
-        System.out.println("save the Maximum spanning tree matrix..");
+        System.out.println("Save the Maximum spanning tree matrix..");
         File f = new File("./data/" + MC.getFileName() + "/" + MC.getSimilarityMeasureName());
         if (!f.exists()) {
             f.mkdirs();
@@ -185,7 +198,7 @@ public final class MaximumSpanningTreeMatrix {
     }
 
     private void loadMaximumSpanningTreeMatrix() {
-        System.out.println("load the Maximum spanning tree matrix..");
+        System.out.println("Load the Maximum spanning tree matrix..");
         try {
             if (maximumSpanningTreeMatrix == null) {
                 maximumSpanningTreeMatrix = new DoubleMatrix();

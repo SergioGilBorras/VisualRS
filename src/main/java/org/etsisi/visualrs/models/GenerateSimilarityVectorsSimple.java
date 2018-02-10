@@ -70,6 +70,15 @@ public class GenerateSimilarityVectorsSimple {
     }
 
     /**
+     * Getter int High limit between positive and negative result.
+     *
+     * @return int The border value
+     */
+    public int getBorder() {
+        return border;
+    }
+
+    /**
      * Getter double vector of similarity positive
      *
      * @return double vector of similarity positive

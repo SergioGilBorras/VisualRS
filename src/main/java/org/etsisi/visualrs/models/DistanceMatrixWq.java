@@ -63,15 +63,26 @@ public class DistanceMatrixWq {
         System.out.println("Generate matrix distance with weight=q");
         treeDistanceMatrixWq = new DoubleMatrix(primMatrix.columns, primMatrix.columns);
         treeDistanceMatrixWq.fill(-1);
-        long time = System.currentTimeMillis();
+        //long time = System.currentTimeMillis();
+        System.out.println("Progress:");
+        long oldProgress = 100;
         for (int item = 0; item < primMatrix.columns; item++) {
-            if (item % 500 == 0) {
-                System.out.println("Round Item:: " + item + " - " + (System.currentTimeMillis() - time));
-                time = System.currentTimeMillis();
+            //if (item % 500 == 0) {
+            //    System.out.println("Round Item:: " + item + " - " + (System.currentTimeMillis() - time));
+            //    time = System.currentTimeMillis();
+            //}
+            double progress = ((item * 100) / primMatrix.columns);
+            if (Math.round(progress) % 10 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
+                System.out.println(Math.round(progress) + "%");
+                oldProgress = Math.round(progress);
+            } else if (Math.round(progress) % 2 == 0 && Math.round(progress) != oldProgress) {
+                System.out.print(".");
+                oldProgress = Math.round(progress);
             }
             treeDistanceMatrixWq.putColumn(item, new DoubleMatrix(DIJKSTRAWq(item)));
             //treeDistanceMatrixWq.putColumn(item, DIJKSTRAWq(item));
         }
+        System.out.println("100%");
     }
 
     private double[] DIJKSTRAWq(int s) throws Exception {
@@ -118,7 +129,7 @@ public class DistanceMatrixWq {
     }
 
     private void loadMatrizesCalculadas() {
-        System.out.println("Loade calculate matrix distance with weight=q");
+        System.out.println("Load calculate matrix distance with weight=q");
         try {
             if (treeDistanceMatrixWq == null) {
                 treeDistanceMatrixWq = new DoubleMatrix();

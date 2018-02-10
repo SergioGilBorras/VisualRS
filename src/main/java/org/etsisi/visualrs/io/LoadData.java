@@ -83,7 +83,7 @@ public final class LoadData {
                     loadFileMl1m();
                     break;
                 case FilmTrust:
-                    loadFileFilmTrustt();
+                    loadFileFilmTrust();
                     break;
                 case Jester:
                     loadFileJester();
@@ -131,11 +131,11 @@ public final class LoadData {
                 maxValue = (maxValue > rank) ? maxValue : rank;
                 minValue = (minValue < rank) ? minValue : rank;
             }
-            System.out.println("Matrix:: " + maxUser + " X " + maxItem);
-            System.out.println("Matrix:: " + minUser + " X " + minItem);
-            System.out.println("MatrixVAL:: " + minValue + " -- " + maxValue);
-            Runtime runtime = Runtime.getRuntime();
-            System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+            //System.out.println("Matrix:: " + maxUser + " X " + maxItem);
+            //System.out.println("Matrix:: " + minUser + " X " + minItem);
+            //System.out.println("MatrixVAL:: " + minValue + " -- " + maxValue);
+            //Runtime runtime = Runtime.getRuntime();
+            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
             rankMatrix = new DoubleMatrix(maxUser, maxItem);
 
             rankMatrix.fill(-1);
@@ -149,12 +149,12 @@ public final class LoadData {
                 rankMatrix.put(user, item, rank);
 
             }
-            System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
             //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
-            System.out.println("R: " + user + " -- " + item + " -- " + rank);
+            //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 
@@ -164,7 +164,7 @@ public final class LoadData {
      * @throws Exception Different exceptions can be throws here with the load
      * of the filmtrust file.
      */
-    private void loadFileFilmTrustt() throws Exception {
+    private void loadFileFilmTrust() throws Exception {
         System.out.println("Loading FilmTrust dataset...");
         int user = 0;
         int item = 0;
@@ -193,11 +193,11 @@ public final class LoadData {
                 maxValue = (maxValue > rank) ? maxValue : rank;
                 minValue = (minValue < rank) ? minValue : rank;
             }
-            System.out.println("Matrix:: " + maxUser + " X " + maxItem);
-            System.out.println("Matrix:: " + minUser + " X " + minItem);
-            System.out.println("MatrixVAL:: " + minValue + " -- " + maxValue);
-            Runtime runtime = Runtime.getRuntime();
-            System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+            //System.out.println("Matrix:: " + maxUser + " X " + maxItem);
+            //System.out.println("Matrix:: " + minUser + " X " + minItem);
+            //System.out.println("MatrixVAL:: " + minValue + " -- " + maxValue);
+            //Runtime runtime = Runtime.getRuntime();
+            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
             rankMatrix = new DoubleMatrix(maxUser, maxItem);
 
             rankMatrix.fill(-1);
@@ -211,12 +211,12 @@ public final class LoadData {
                 rankMatrix.put(user, item, rank);
 
             }
-            System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
             //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
-            System.out.println("R: " + user + " -- " + item + " -- " + rank);
+            //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 
@@ -257,17 +257,17 @@ public final class LoadData {
             }
             maxUser++;
             maxItem++;
-            if (maxUser > 50000) {
-                maxUser = 50000;
-            }
-            if (maxItem > 5000) {
-                maxItem = 5000;
-            }
-            System.out.println("Matrix:: " + maxUser + " X " + maxItem);
-            System.out.println("Matrix:: " + minUser + " X " + minItem);
-            System.out.println("MatrixVAL:: " + minValue + " -- " + maxValue);
-            Runtime runtime = Runtime.getRuntime();
-            System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+//            if (maxUser > 50000) {
+//                maxUser = 50000;
+//            }
+//            if (maxItem > 5000) {
+//                maxItem = 5000;
+//            }
+            //System.out.println("Matrix:: " + maxUser + " X " + maxItem);
+            //System.out.println("Matrix:: " + minUser + " X " + minItem);
+            //System.out.println("MatrixVAL:: " + minValue + " -- " + maxValue);
+            //Runtime runtime = Runtime.getRuntime();
+            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
             rankMatrix = new DoubleMatrix(maxUser, maxItem);
 
             rankMatrix.fill(-1);
@@ -282,12 +282,12 @@ public final class LoadData {
                     rankMatrix.put(user, item, rank);
                 }
             }
-            System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
             //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
-            System.out.println("R: " + user + " -- " + item + " -- " + rank);
+            //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 
@@ -342,17 +342,17 @@ public final class LoadData {
             }
             maxUser++;
             maxItem++;
-            if (maxUser > 50000) {
-                maxUser = 50000;
-            }
-            if (maxItem > 5000) {
-                maxItem = 5000;
-            }
-            System.out.println("Matrix MAX:: " + maxUser + " X " + maxItem);
-            System.out.println("Matrix MIN:: " + minUser + " X " + minItem);
-            System.out.println("Matrix VAL:: " + minValue + " -- " + maxValue);
-            Runtime runtime = Runtime.getRuntime();
-            System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+//            if (maxUser > 50000) {
+//                maxUser = 50000;
+//            }
+//            if (maxItem > 5000) {
+//                maxItem = 5000;
+//            }
+            //System.out.println("Matrix MAX:: " + maxUser + " X " + maxItem);
+            //System.out.println("Matrix MIN:: " + minUser + " X " + minItem);
+            //System.out.println("Matrix VAL:: " + minValue + " -- " + maxValue);
+            //Runtime runtime = Runtime.getRuntime();
+            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
             rankMatrix = new DoubleMatrix(maxUser, maxItem);
 
             rankMatrix.fill(-1);
@@ -375,12 +375,12 @@ public final class LoadData {
                 }
 
             }
-            System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
             //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
-            System.out.println("R: " + user + " -- " + item + " -- " + rank);
+            //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 
@@ -411,9 +411,9 @@ public final class LoadData {
             }
             maxUser = nlinea;
 
-            System.out.println("Matrix MAX:: " + maxUser + " X " + maxItem);
-            Runtime runtime = Runtime.getRuntime();
-            System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+            //System.out.println("Matrix MAX:: " + maxUser + " X " + maxItem);
+            //Runtime runtime = Runtime.getRuntime();
+            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
             rankMatrix = new DoubleMatrix(maxUser, maxItem);
 
             rankMatrix.fill(-1);
@@ -436,12 +436,12 @@ public final class LoadData {
                 }
                 nlinea++;
             }
-            System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
             //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
-            System.out.println("R: " + user + " -- " + item + " -- " + rank);
+            //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 

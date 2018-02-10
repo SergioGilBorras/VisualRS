@@ -54,9 +54,9 @@ public class QualityMeasureEMHistogram extends QualityMeasureFinal {
             double numCasos = 0;
             for (Double d : Lout) {
                 if (d != old) {
-                    if (old != -1) {
-                        System.out.println(old + ":" + num);
-                    }
+                    //if (old != -1) {
+                    //    System.out.println(old + ":" + num);
+                    //}
                     if (old > 1) {
                         double aux = (numOld / 2);
                         errorMedio += Math.abs(aux - num);
@@ -69,7 +69,7 @@ public class QualityMeasureEMHistogram extends QualityMeasureFinal {
                 num++;
             }
 
-            System.out.println(old + ":" + num);
+            //System.out.println(old + ":" + num);
             double aux = (numOld / 2);
             errorMedio += Math.abs(aux - num);
             numCasos++;

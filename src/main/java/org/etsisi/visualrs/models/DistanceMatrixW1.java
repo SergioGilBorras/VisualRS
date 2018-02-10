@@ -25,7 +25,8 @@ import org.jblas.DoubleMatrix;
  *
  * @author Sergio Gil Borras
  * @version 1.0 - August 2017
- * @see "Related to article 'Tree graph visualization of recommender systems related information'" 
+ * @see "Related to article 'Tree graph visualization of recommender systems
+ * related information'"
  */
 public class DistanceMatrixW1 {
 
@@ -63,15 +64,26 @@ public class DistanceMatrixW1 {
         System.out.println("Generate matrix distance with weight=1");
         treeDistanceMatrixW1 = new DoubleMatrix(primMatrix.columns, primMatrix.columns);
         treeDistanceMatrixW1.fill(-1);
-        long time = System.currentTimeMillis();
+        //long time = System.currentTimeMillis();
+        System.out.println("Progress:");
+        long oldProgress = 100;
         for (int item = 0; item < primMatrix.columns; item++) {
-            if (item % 500 == 0) {
-                System.out.println("Round Item:: " + item + " - " + (System.currentTimeMillis() - time));
-                time = System.currentTimeMillis();
+            //if (item % 500 == 0) {
+            //    System.out.println("Round Item:: " + item + " - " + (System.currentTimeMillis() - time));
+            //    time = System.currentTimeMillis();
+            //}
+            double progress = ((item * 100) / primMatrix.columns);
+            if (Math.round(progress) % 10 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
+                System.out.println(Math.round(progress) + "%");
+                oldProgress = Math.round(progress);
+            } else if (Math.round(progress) % 2 == 0 && Math.round(progress) != oldProgress) {
+                System.out.print(".");
+                oldProgress = Math.round(progress);
             }
             treeDistanceMatrixW1.putColumn(item, new DoubleMatrix(DIJKSTRAW1(item)));
             //treeDistanceMatrixW1.putColumn(item, DIJKSTRAW1(item));
         }
+        System.out.println("100%");
     }
 
     private double[] DIJKSTRAW1(int s) throws Exception {

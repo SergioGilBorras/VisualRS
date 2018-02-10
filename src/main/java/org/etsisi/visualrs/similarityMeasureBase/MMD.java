@@ -29,7 +29,7 @@ public class MMD extends SimilarityMeasureBase {
     @Override
     public double calculate(double[] a1, double[] a2) {
         if (a1 == null || a2 == null || a1.length != a2.length) {
-            throw new IllegalArgumentException("Uno de los parametros es null. O no tienen la misma longitud");
+            throw new IllegalArgumentException("A parameter is null, or the pameters don't have the same lenght.");
         }
         int[] nVotosA1 = new int[7];
         Arrays.fill(nVotosA1, 0);
@@ -68,9 +68,9 @@ public class MMD extends SimilarityMeasureBase {
             return 0;
         }
         double res = 1 / (1 + votos);
-        if (res == Double.POSITIVE_INFINITY || res == Double.NEGATIVE_INFINITY) {
-            System.out.println("RAS-VOTO:: " + res + " -- " + votos);
-        }
+        //if (res == Double.POSITIVE_INFINITY || res == Double.NEGATIVE_INFINITY) {
+        //    System.out.println("RAS-VOTO:: " + res + " -- " + votos);
+        //}
         return res;
 
     }

@@ -118,7 +118,11 @@ public class Test {
         try {
             MenuCommandLine menu = new MenuCommandLine();
             if (menu.isLoadCorrect()) {
-                selectDataset(menu.getDataset());
+                if(menu.hasFilePath()){
+                    selectDataset(menu.getFilePath());
+                }else{
+                    selectDataset(menu.getDataset());
+                }
                 gvss = new GenerateSimilarityVectorsSimple(4, MV);
                 generateListSM();
 
@@ -152,7 +156,15 @@ public class Test {
         }
 
     }
+/**
+     * Select the dataset to execute
+     */
+    private void selectDataset(String pathFile) throws Exception {
+        File file = new File(pathFile);
+        MV = new LoadData(file, LoadData.DatasetToRead.FilmTrust);
 
+        fileName = file.getName();
+    }
     /**
      * Select the dataset to execute
      */
@@ -271,7 +283,7 @@ public class Test {
             }
             bw.close();
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }
@@ -293,7 +305,7 @@ public class Test {
                 execGraphics();
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }
