@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.etsisi.visualrs.codeExample;
+package org.etsisi.visualrs.examples;
 
 import java.io.File;
 import org.etsisi.visualrs.io.Exports;
@@ -16,14 +16,14 @@ import org.etsisi.visualrs.models.SimilarityMatrix;
 import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.ClosenessCentralityWqW1;
 import org.etsisi.visualrs.qualityMeasures.qualityMeasuresFinal.QualityMeasureCorrelation;
 
-public class exampleExecution {
+public class GettingStarted {
 
-     public static void main(String[] args) {
-        exampleExecution t = new exampleExecution();
+    public static void main(String[] args) {
+        GettingStarted t = new GettingStarted();
         System.exit(0);
     }
 
-    public exampleExecution() {
+    public GettingStarted() {
         try {
             File myFile = new File(this.getClass().getResource("/datasets/FilmTrust.txt").getPath());
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.etsisi.visualrs.codeExample;
+package org.etsisi.visualrs.examples;
 
 import org.etsisi.visualrs.models.MaximumSpanningTreeMatrix;
 import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.QualityMeasureByNode;
