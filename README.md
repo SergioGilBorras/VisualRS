@@ -87,13 +87,13 @@ java -jar mVisualRS-1.0.1.jar
 To use the library, we first load the selected dataset into the File class. We are using the provided datasets:
 
 ```Java
-File myFile = new File (this.getClass().getResource("/datasets/filmtrust-ratings.txt").getPath());
+File myFile = new File (this.getClass().getResource("/datasets/FilmTrust.txt").getPath());
 ```
 
 The dataset is then loaded into the data structure:
 
 ```Java
-LoadData MV = new LoadData(myFile, DatasetToRead.Filmtrust);
+LoadData MV = new LoadData(myFile, DatasetToRead.FilmTrust);
 ```
 
 To use the chosen similarity measure, we generate the similarity vector, and then we instantiate the `FSM` class: the first parameter is the threshold between positive and negative rating values. We have considered the value 4 in our tests.
@@ -144,33 +144,10 @@ Exports graphicsGephi = new Exports(MRM);
 GraphicsGephi.execute(TypeFileExport.PDF);
 ```
 
-Below is shown the complete code of this example:
+This example has been added to the `org.etsisi.visualrs.examples.GettingStarted` class. You can run it using the following command:
 
-```Java
-File myFile = new File (this.getClass().getResource("/datasets/filmtrust-ratings.txt").getPath());
-
-LoadData MV = new LoadData(myFile, DatasetToRead.Filmtrus);
-
-GenerateSimilarityVectorsSimple gvss = new GenerateSimilarityVectorsSimple(4, MV);
-
-SimilarityMatrix MC = new SimilarityMatrix(new FPearson(), MV);
-
-MaximumSpanningTreeMatrix MRM = new MaximumSpanningTreeMatrix(MC);
-
-NumberOuts nouts = new NumberOuts(MRM);
-
-DistanceMatrixW1 MDW1 = new DistanceMatrixW1(MRM);
-DistanceMatrixW1 MDWq = new DistanceMatrixWq(MRM);
-DistanceMatrixWOuts MDWouts = new DistanceMatrixWOuts(MRM, nouts);
-
-Pearson pearsonCorrelation = new Pearson();
-ClosenessCentralityWqW1 pcW1 = new ClosenessCentralityWqW1(MDW1);
-QualityMeasureCorrelation QMC = new QualityMeasureCorrelation(pearsonCorrelation, nouts, pcW1)
-
-System.out.println(QMC.getName() + " .. " + QMC.calculate());
-
-Exports graphicsGephi = new Exports(MRM);
-GraphicsGephi.execute(TypeFileExport.PDF);
+```
+mvn exec:java -Dexec.mainClass="org.etsisi.visualrs.examples.GettingStarted"
 ```
 
 Following figure summarizes the process sequence to generate VisualRS results. We can load different current open RS datasets, using LoadData class, from the `io` package. Then we choose the similarity measure that will relate users or items. To convert the rating matrix to a graph, we use the `SimilarityMatrix` class, into the models package; the same package provides us with the class `MaximumSpanningTreeMatrix` to turn the graph into a tree. We can test each information tree quality using node-based and histogram-based quality measures or an aggregation, composition and modification mix; package `qualityMeasures` contains the necessary classes. Finally, results can be graphically shown using the Export class from the `io` package. Additionally, tabular and text formats are supported.
@@ -315,7 +292,9 @@ public class FPearson extends SimilarityMeasureFinal {
     }
 }
 ```
- 
+
+This similarity metric has been added to the classes `org.etsisi.visualrs.examples.SMBPearsonExample` and `org.etsisi.visualrs.examples.SMPearsonExample`.
+
 ### Creating new quality measures
 
 To add a new quality measure, we have to extend the abstract class `QualityMeasureByNode`. The following code shows, as an example, the outs based quality measure:
@@ -349,6 +328,8 @@ public class NumberOuts extends QualityMeasureByNode {
     }
 }
 ```
+
+This quality measure has been added to the class `org.etsisi.visualrs.examples.QMOutsNumber`.
  
 ## Test example
 
