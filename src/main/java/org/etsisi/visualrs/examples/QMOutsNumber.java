@@ -8,10 +8,6 @@ package org.etsisi.visualrs.examples;
 import org.etsisi.visualrs.models.MaximumSpanningTreeMatrix;
 import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.QualityMeasureByNode;
 
-/**
- *
- * @author rasta
- */
 public class QMOutsNumber extends QualityMeasureByNode {
 
     public QMOutsNumber(MaximumSpanningTreeMatrix MRM) {

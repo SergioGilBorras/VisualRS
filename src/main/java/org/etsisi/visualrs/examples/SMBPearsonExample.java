@@ -8,10 +8,6 @@ package org.etsisi.visualrs.examples;
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 import org.etsisi.visualrs.similarityMeasureBase.SimilarityMeasureBase;
 
-/**
- *
- * @author rasta
- */
 public class SMBPearsonExample extends SimilarityMeasureBase {
 
     PearsonsCorrelation pc;

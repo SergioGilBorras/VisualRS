@@ -7,11 +7,7 @@ package org.etsisi.visualrs.examples;
 
 import org.etsisi.visualrs.similarityMeasureFinal.SimilarityMeasureFinal;
 
-/**
- *
- * @author rasta
- */
- public class SMPearsonExample extends SimilarityMeasureFinal {
+public class SMPearsonExample extends SimilarityMeasureFinal {
 
     SMBPearsonExample pc;
     public SMPearsonExample() {
