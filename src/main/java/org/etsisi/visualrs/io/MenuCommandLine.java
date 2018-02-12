@@ -98,11 +98,11 @@ public class MenuCommandLine {
 
     private int selectExecution() {
         int re = -1;
-        System.out.println("Type the model of the execution: [1-3]");
+        System.out.println("\nType the model of the execution: [1-3]");
 
-        System.out.println("\t 1) - One similarity measure execution");
-        System.out.println("\t 2) - All similarities measure execution");
-        System.out.println("\t 3) - All similarities measure execution (Only Graphic)");
+        System.out.println("\t1) - One similarity measure execution");
+        System.out.println("\t2) - All similarities measure execution");
+        System.out.println("\t3) - All similarities measure execution (Only Graphic)");
 
         try {
             int i = Integer.parseInt(br.readLine());
@@ -121,16 +121,16 @@ public class MenuCommandLine {
 
     private int selectDataset() {
         int re = -1;
-        System.out.println("Choose a dataset: [1-5]");
+        System.out.println("\nChoose a dataset: [1-5]");
 
         for (DatasetToRead dtr : DatasetToRead.values()) {
-            System.out.println("\t " + (dtr.ordinal() + 1) + ") - " + dtr.name());
+            System.out.println("\t" + (dtr.ordinal() + 1) + ") - " + dtr.name());
         }
-        System.out.println("\t 99) - Path to file.");
+        System.out.println("\t6) - External dataset file");
 
         try {
             int i = Integer.parseInt(br.readLine());
-            if (i == 99) {
+            if (i == 6) {
                 re = 100;
             } else if (i > 5 || i < 1) {
                 System.err.println("Insert a value between 1-5.");
@@ -148,10 +148,10 @@ public class MenuCommandLine {
     private int selectSimilarityMeasure() {
         int re = -1;
         int position = 0;
-        System.out.println("Choose a similarity measure: [1-17]");
+        System.out.println("\nChoose a similarity measure: [1-17]");
 
         for (SimilarityMeasureFinal sMF : listSM) {
-            System.out.println("\t " + (position + 1) + ") - " + sMF.getName());
+            System.out.println("\t" + (position + 1) + ") - " + sMF.getName());
             position++;
         }
 
@@ -171,7 +171,7 @@ public class MenuCommandLine {
     }
 
     private String loadFilePathMenu() {
-        System.out.println("Write the full path to the dataset: ");
+        System.out.println("Write the full path to the dataset (fields must be sperated with blanks): ");
         try {
             String DsFilePath = br.readLine();
             File f = new File(DsFilePath);

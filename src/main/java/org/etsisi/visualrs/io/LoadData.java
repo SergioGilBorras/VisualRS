@@ -73,7 +73,7 @@ public final class LoadData {
         this.file = file;
         if (hasRankMatrix()) {
             loadRankMatrix();
-            System.out.println("Matrix size: " + this.rankMatrix.rows + " * " + this.rankMatrix.columns);
+            System.out.println("Matrix size: " + this.rankMatrix.rows + " rows * " + this.rankMatrix.columns + " colums");
         } else {
             switch (DtR) {
                 case Netflix:
@@ -103,7 +103,7 @@ public final class LoadData {
      * of the movilens 1Mb file.
      */
     private void loadFileMl1m() throws Exception {
-        System.out.println("Loading MovieLens 1M dataset...");
+        System.out.print("\nLoading MovieLens 1M dataset...");
         int user = 0;
         int item = 0;
         double rank = 0;
@@ -149,6 +149,8 @@ public final class LoadData {
                 rankMatrix.put(user, item, rank);
 
             }
+
+            System.out.println(" Done.");
             //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
@@ -165,7 +167,7 @@ public final class LoadData {
      * of the filmtrust file.
      */
     private void loadFileFilmTrust() throws Exception {
-        System.out.println("Loading FilmTrust dataset...");
+        System.out.print("\nLoading FilmTrust dataset...");
         int user = 0;
         int item = 0;
         double rank = 0;
@@ -211,11 +213,13 @@ public final class LoadData {
                 rankMatrix.put(user, item, rank);
 
             }
+
+            System.out.println(" Done.");
             //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
             //e.printStackTrace();
-            System.err.println("Exception:: " + e.getMessage());
+            System.err.println("Exception: " + e.getMessage());
             //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
@@ -227,7 +231,7 @@ public final class LoadData {
      * of the netflix file.
      */
     private void loadFileNf() throws Exception {
-        System.out.println("Loading Netflix dataset...");
+        System.out.print("\nLoading Netflix dataset...");
         int user = 0;
         int item = 0;
         double rank = 0;
@@ -282,11 +286,13 @@ public final class LoadData {
                     rankMatrix.put(user, item, rank);
                 }
             }
+
+            System.out.println(" Done.");
             //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
             //e.printStackTrace();
-            System.err.println("Exception:: " + e.getMessage());
+            System.err.println("Exception: " + e.getMessage());
             //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
@@ -298,7 +304,7 @@ public final class LoadData {
      * of the bookcrossing file.
      */
     private void loadFileBooks() throws Exception {
-        System.out.println("Loading BookCrossing dataset...");
+        System.out.print("\nLoading BookCrossing dataset...");
         int user = 0;
         int item = 0;
         ArrayList<String> conversorISBN = new ArrayList<>();
@@ -375,11 +381,13 @@ public final class LoadData {
                 }
 
             }
+
+            System.out.println(" Done.");
             //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
             //e.printStackTrace();
-            System.err.println("Exception:: " + e.getMessage());
+            System.err.println("Exception: " + e.getMessage());
             //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
@@ -391,7 +399,7 @@ public final class LoadData {
      * of the jester file.
      */
     private void loadFileJester() throws Exception {
-        System.out.println("Loading Jester dataset...");
+        System.out.print("\nLoading Jester dataset...");
         int user = 0;
         int item = 0;
         double rank = 0;
@@ -436,23 +444,26 @@ public final class LoadData {
                 }
                 nlinea++;
             }
+
+            System.out.println(" Done.");
             //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
             //e.printStackTrace();
-            System.err.println("Exception:: " + e.getMessage());
+            System.err.println("Exception: " + e.getMessage());
             //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 
     private void saveRankMatrix() {
-        System.out.println("Saving rank matrix...");
+        System.out.print("\nSaving rank matrix...");
         File f = new File("./data/" + file.getName());
         if (!f.exists()) {
             f.mkdirs();
         }
         try {
             rankMatrix.save("./data/" + file.getName() + "/votosMatrix.dat");
+            System.out.println(" Done.");
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
@@ -465,13 +476,14 @@ public final class LoadData {
      * @param FCName String The name of the similarity function to use.
      */
     public void saveRankMatrix(String FCName) {
-        System.out.println("Saving rank matrix...");
+        System.out.print("\nSaving rank matrix...");
         File f = new File("./data/" + file.getName() + "/" + FCName);
         if (!f.exists()) {
             f.mkdirs();
         }
         try {
             rankMatrix.save("./data/" + file.getName() + "/" + FCName + "/votosMatrix.dat");
+            System.out.println(" Done.");
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
@@ -479,15 +491,16 @@ public final class LoadData {
     }
 
     private void loadRankMatrix() {
-        System.out.println("Loading rank matrix...");
+        System.out.print("Loading rank matrix...");
         try {
             if (rankMatrix == null) {
                 rankMatrix = new DoubleMatrix();
                 rankMatrix.load("./data/" + file.getName() + "/votosMatrix.dat");
             }
+            System.out.println(" Done.");
         } catch (Exception e) {
             //e.printStackTrace();
-            System.out.println("Excepcion (loadRankMatrix): " + e.getMessage());
+            System.out.println("Excepcion loading rank matrix: " + e.getMessage());
         }
     }
 
@@ -497,13 +510,14 @@ public final class LoadData {
      * @param FCName String The name of the similarity function to use.
      */
     public void loadRankMatrix(String FCName) {
-        System.out.println("Loading rank matrix...");
+        System.out.print("Loading rank matrix...");
         try {
             rankMatrix = new DoubleMatrix();
             rankMatrix.load("./data/" + file.getName() + "/" + FCName + "/votosMatrix.dat");
+            System.out.println(" Done.");
         } catch (Exception e) {
             //e.printStackTrace();
-            System.out.println("Excepcion (loadRankMatrix): " + e.getMessage());
+            System.out.println("Excepcion loading rank matrix: " + e.getMessage());
         }
     }
 

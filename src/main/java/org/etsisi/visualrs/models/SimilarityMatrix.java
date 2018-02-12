@@ -142,12 +142,13 @@ public final class SimilarityMatrix {
     }
 
     private void generateSimilarityMatrix() throws Exception {
+        System.out.println("\nGenerating similarity matrix...");
+
         org.etsisi.visualrs.matrices.DoubleMatrix votosMatrix = MV.getRankMatrix();
         similarityMatrix = new DoubleMatrix(votosMatrix.columns, votosMatrix.columns);
         similarityMatrix.fill(-99);
 
         //long tIni = System.currentTimeMillis();
-        System.out.println("Progress:");
         long oldProgress = 100;
         for (int item = 0; item < votosMatrix.columns; item++) {
 
@@ -156,10 +157,10 @@ public final class SimilarityMatrix {
             //    tIni = System.currentTimeMillis();
             //}
             double progress = ((item * 100) / votosMatrix.columns);
-            if (Math.round(progress) % 10 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
-                System.out.println(Math.round(progress) + "%");
+            if (Math.round(progress) % 25 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
+                System.out.print(" " + Math.round(progress) + "% ");
                 oldProgress = Math.round(progress);
-            } else if (Math.round(progress) % 2 == 0 && Math.round(progress) != oldProgress) {
+            } else if (Math.round(progress) % 5 == 0 && Math.round(progress) != oldProgress) {
                 System.out.print(".");
                 oldProgress = Math.round(progress);
             }
@@ -178,17 +179,18 @@ public final class SimilarityMatrix {
 
         }
 
-        System.out.println("100%");
+        System.out.println(" 100%");
     }
 
     private void saveSimilarityMatrix() {
-        System.out.println("Save similarity matrix..");
+        System.out.print("\nSaving similarity matrix...");
         File f = new File("./data/" + MV.getFileName() + "/" + FC.getName());
         if (!f.exists()) {
             f.mkdirs();
         }
         try {
             similarityMatrix.save("./data/" + MV.getFileName() + "/" + FC.getName() + "/correlationMatrix.dat");
+            System.out.println(" Done.");
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
@@ -196,12 +198,13 @@ public final class SimilarityMatrix {
     }
 
     private void loadSimilarityMatrix() {
-        System.out.println("Load similarity matrix..");
+        System.out.print("\nLoading similarity matrix...");
         try {
             if (similarityMatrix == null) {
                 similarityMatrix = new DoubleMatrix();
                 similarityMatrix.load("./data/" + MV.getFileName() + "/" + FC.getName() + "/correlationMatrix.dat");
             }
+            System.out.println(" Done.");
         } catch (Exception e) {
             System.out.println("Excepcion (loadSimilarityMatrix): " + e.getMessage());
         }

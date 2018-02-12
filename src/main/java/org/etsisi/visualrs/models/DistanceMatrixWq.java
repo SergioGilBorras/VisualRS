@@ -60,11 +60,10 @@ public class DistanceMatrixWq {
 
     private void generaCorrelationMatrix() throws Exception {
         DoubleMatrix primMatrix = MRM.getMaximumSpanningTreeMatrix();
-        System.out.println("Generate matrix distance with weight=q");
+        System.out.println("\nGenerating distance matrix with weight = q...");
         treeDistanceMatrixWq = new DoubleMatrix(primMatrix.columns, primMatrix.columns);
         treeDistanceMatrixWq.fill(-1);
         //long time = System.currentTimeMillis();
-        System.out.println("Progress:");
         long oldProgress = 100;
         for (int item = 0; item < primMatrix.columns; item++) {
             //if (item % 500 == 0) {
@@ -72,17 +71,17 @@ public class DistanceMatrixWq {
             //    time = System.currentTimeMillis();
             //}
             double progress = ((item * 100) / primMatrix.columns);
-            if (Math.round(progress) % 10 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
-                System.out.println(Math.round(progress) + "%");
+            if (Math.round(progress) % 25 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
+                System.out.print(" " + Math.round(progress) + "% ");
                 oldProgress = Math.round(progress);
-            } else if (Math.round(progress) % 2 == 0 && Math.round(progress) != oldProgress) {
+            } else if (Math.round(progress) % 5 == 0 && Math.round(progress) != oldProgress) {
                 System.out.print(".");
                 oldProgress = Math.round(progress);
             }
             treeDistanceMatrixWq.putColumn(item, new DoubleMatrix(DIJKSTRAWq(item)));
             //treeDistanceMatrixWq.putColumn(item, DIJKSTRAWq(item));
         }
-        System.out.println("100%");
+        System.out.println(" 100%");
     }
 
     private double[] DIJKSTRAWq(int s) throws Exception {
@@ -115,13 +114,14 @@ public class DistanceMatrixWq {
     }
 
     private void saveMatrizesCalculadas() {
-        System.out.println("Save calculate matrix distance with weight=q");
+        System.out.print("\nSaving calculated distance matrix with weight = q...");
         File f = new File("./data/" + MRM.getFileName() + "/" + MRM.getSimilarityMeasureName());
         if (!f.exists()) {
             f.mkdirs();
         }
         try {
             treeDistanceMatrixWq.save("./data/" + MRM.getFileName() + "/" + MRM.getSimilarityMeasureName() + "/distanciaWqMatrix.dat");
+            System.out.println(" Done.");
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
@@ -129,14 +129,15 @@ public class DistanceMatrixWq {
     }
 
     private void loadMatrizesCalculadas() {
-        System.out.println("Load calculate matrix distance with weight=q");
+        System.out.print("\nLoading calculated distance matrix with weight = q...");
         try {
             if (treeDistanceMatrixWq == null) {
                 treeDistanceMatrixWq = new DoubleMatrix();
                 treeDistanceMatrixWq.load("./data/" + MRM.getFileName() + "/" + MRM.getSimilarityMeasureName() + "/distanciaWqMatrix.dat");
             }
+            System.out.println(" Done.");
         } catch (Exception e) {
-            System.out.println("Excepcion (loadMatrizesCalculadas): " + e.getMessage());
+            System.out.println("Exception loading matrices: " + e.getMessage());
         }
     }
 

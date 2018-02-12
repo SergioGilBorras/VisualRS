@@ -92,7 +92,8 @@ public class Exports {
      */
     public void execute(TypeFileExport TFE) throws Exception {
         this.TFE = TFE;
-        System.out.println("--:: Graphics " + correlationName + " to " + TFE.name() + "::--");
+
+        System.out.print("\nExporting " + correlationName + " graphics to " + TFE.name() + " file...");
 
         if (TFE == CSV) {
             saveGephiCSV();
@@ -100,6 +101,7 @@ public class Exports {
             saveGephiGrafico();
         }
 
+        System.out.println(" Done.");
     }
 
     /**
@@ -131,7 +133,7 @@ public class Exports {
             bw.close();
         } catch (Exception e) {
             //e.printStackTrace();
-            System.out.println("Exception (Export): " + e.getMessage());
+            System.out.println("Export exception: " + e.getMessage());
         }
     }
 
@@ -180,18 +182,6 @@ public class Exports {
                 }
             }
 
-            //Count nodes and edges
-            System.out.println("Nodes: " + undirectedGraph.getNodeCount() + " Edges: " + undirectedGraph.getEdgeCount());
-
-            //Iterate over nodes
-//        for (Node n : undirectedGraph.getNodes()) {
-//            Node[] neighbors = undirectedGraph.getNeighbors(n).toArray();
-//            System.out.println(n.getLabel() + " has " + neighbors.length + " neighbors");
-//        }
-            //Iterate over edges
-//        for (Edge e : undirectedGraph.getEdges()) {
-//            System.out.println(e.getSource().getId() + " -> " + e.getTarget().getId());
-//        }
             OpenOrdLayout firstLayout = new OpenOrdLayout(null);
             firstLayout.setGraphModel(graphModel);
             firstLayout.resetPropertiesValues();

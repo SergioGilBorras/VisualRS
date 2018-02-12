@@ -94,6 +94,8 @@ public final class MaximumSpanningTreeMatrix {
     }
 
     private double prim() throws Exception {
+        System.out.println("\nGenerating the Maximum Spanning Tree matrix...");
+
         DoubleMatrix correlationMatrix = MC.getSimilarityMatrix();
         maximumSpanningTreeMatrix = new DoubleMatrix(correlationMatrix.columns, correlationMatrix.columns);
         maximumSpanningTreeMatrix.fill(-Double.MAX_VALUE);
@@ -121,7 +123,6 @@ public final class MaximumSpanningTreeMatrix {
         avisitados[nMediaCIndex] = true;
         int nvisitados = 1;
         visitados.add(nMediaCIndex);
-        System.out.println("Progress:");
         long oldProgress = 100;
         while (nvisitados < correlationMatrix.columns) {
 
@@ -150,10 +151,10 @@ public final class MaximumSpanningTreeMatrix {
             //}
 
             double progress = ((nvisitados * 100) / correlationMatrix.columns);
-            if (Math.round(progress) % 10 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
-                System.out.println(Math.round(progress) + "%");
+            if (Math.round(progress) % 25 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
+                System.out.print(" " + Math.round(progress) + "% ");
                 oldProgress = Math.round(progress);
-            } else if (Math.round(progress) % 2 == 0 && Math.round(progress) != oldProgress) {
+            } else if (Math.round(progress) % 5 == 0 && Math.round(progress) != oldProgress) {
                 System.out.print(".");
                 oldProgress = Math.round(progress);
             }
@@ -176,7 +177,7 @@ public final class MaximumSpanningTreeMatrix {
 
         }
 
-        System.out.println("100%");
+        System.out.println(" 100%");
         //System.err.println("NO VISITED::" + novisitados);
         //System.out.println("1-SpanningTree.. Total Weight::" + MST);
         //System.out.println("1-SpanningTree.. AVG Weight::" + (MST / maximumSpanningTreeMatrix.rows));
@@ -184,13 +185,14 @@ public final class MaximumSpanningTreeMatrix {
     }
 
     private void saveMaximumSpanningTreeMatrix() {
-        System.out.println("Save the Maximum spanning tree matrix..");
+        System.out.print("\nSaving the Maximum Spanning Tree matrix...");
         File f = new File("./data/" + MC.getFileName() + "/" + MC.getSimilarityMeasureName());
         if (!f.exists()) {
             f.mkdirs();
         }
         try {
             maximumSpanningTreeMatrix.save("./data/" + MC.getFileName() + "/" + MC.getSimilarityMeasureName() + "/MRMMatrix.dat");
+            System.out.println(" Done.");
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
@@ -198,12 +200,13 @@ public final class MaximumSpanningTreeMatrix {
     }
 
     private void loadMaximumSpanningTreeMatrix() {
-        System.out.println("Load the Maximum spanning tree matrix..");
+        System.out.print("\nLoading the Maximum Spanning Tree matrix...");
         try {
             if (maximumSpanningTreeMatrix == null) {
                 maximumSpanningTreeMatrix = new DoubleMatrix();
                 maximumSpanningTreeMatrix.load("./data/" + MC.getFileName() + "/" + MC.getSimilarityMeasureName() + "/MRMMatrix.dat");
             }
+            System.out.println(" Done.");
         } catch (Exception e) {
             System.out.println("Excepcion (loadMaximumSpanningTreeMatrix): " + e.getMessage());
         }

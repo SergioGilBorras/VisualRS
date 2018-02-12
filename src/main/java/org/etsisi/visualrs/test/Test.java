@@ -131,24 +131,24 @@ public class Test {
                         SimilarityMeasureFinal SMF = menu.getSimilarityMeasure();
                         if (SMF != null) {
                             execOnce(SMF);
-                            System.out.println("\nYou can get the generated report and graphics in the DATA folder.");
+                            System.out.println("\nYou can get the generated report and graphics in the 'data' directory.");
                         } else {
-                            System.out.println("Sorry, you should fill correctly the menu.");
+                            System.out.println("Sorry, you should fill properly the menu.");
                         }
                         break;
                     case 1:
                         execBatch();
-                        System.out.println("\nYou can get the generated report and graphics in the DATA folder.");
+                        System.out.println("\nYou can get the generated report and graphics in the 'data' directory.");
                         break;
                     case 2:
                         execGraphicsBatch();
-                        System.out.println("\nYou can get the generated graphics in the DATA folder.");
+                        System.out.println("\nYou can get the generated graphics in the 'data' directory.");
                         break;
                     default:
-                        System.out.println("Sorry, you should fill correctly the menu.");
+                        System.out.println("Sorry, you should fill properly the menu.");
                 }
             } else {
-                System.out.println("Sorry, you should fill correctly the menu.");
+                System.out.println("Sorry, you should fill properly the menu.");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -214,7 +214,7 @@ public class Test {
                 MV.loadRankMatrix(FCFActivo.getName());
             }
 
-            System.out.println(" -- " + FCFActivo.getName() + " -- ");
+            System.out.println("\nUsing " + FCFActivo.getName() + " similarirty metric.");
 
             MC = new SimilarityMatrix(FCFActivo, MV);
             MRM = new MaximumSpanningTreeMatrix(MC);
@@ -227,8 +227,9 @@ public class Test {
 
             generateListQM();
 
+            System.out.println("\nQuality results:");
             for (QualityMeasureFinal metrica : listQM) {
-                System.out.println(metrica.getName() + " .. " + metrica.calculate());
+                System.out.println(metrica.getName() + " = " + metrica.calculate());
             }
 
             execGraphics();
@@ -247,7 +248,7 @@ public class Test {
             BufferedWriter bw = new BufferedWriter(new FileWriter(sFile));
             for (SimilarityMeasureFinal FCFActivo : listSM) {
 
-                System.out.println(" -- " + FCFActivo.getName() + " -- ");
+                System.out.println("\nUsing  " + FCFActivo.getName() + " similarirty metric.");
 
                 if (MV.hasRankMatrix(FCFActivo.getName())) {
                     MV.loadRankMatrix(FCFActivo.getName());
@@ -297,7 +298,7 @@ public class Test {
         try {
             for (SimilarityMeasureFinal FCFActivo : listSM) {
 
-                System.out.println(" -- " + FCFActivo.getName() + " -- ");
+                System.out.println("\nUsing " + FCFActivo.getName() + " similarirty metric.");
 
                 MC = new SimilarityMatrix(FCFActivo, MV);
                 MRM = new MaximumSpanningTreeMatrix(MC);
@@ -314,7 +315,7 @@ public class Test {
      * Load the list for similarity measures to use.
      */
     private void generateListSM() throws Exception {
-        System.out.println("Generate list SM..");
+        System.out.print("\nGenerating list of similairty metrics...");
 
         listSM = new ArrayList<>();
 
@@ -336,13 +337,14 @@ public class Test {
         listSM.add(new FJMMD());
         listSM.add(new FCJacMD());
 
+        System.out.println(" Done.");
     }
 
     /**
      * Load the list for quality measures to use.
      */
     private void generateListQM() throws Exception {
-        System.out.println("Generate list QM..");
+        System.out.print("\nGenerating list of quality measures...");
 
         listQM = new ArrayList<>();
 
@@ -397,6 +399,7 @@ public class Test {
         listQM.add(new QualityMeasureEMHistogram(nouts));
         listQM.add(new QualityMeasureCorrelationHistogram(pearsonCorrelation, nouts));
 
+        System.out.println(" Done.");
     }
 
 }
