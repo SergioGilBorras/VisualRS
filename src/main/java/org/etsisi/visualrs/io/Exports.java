@@ -241,7 +241,7 @@ public class Exports {
 
             model.getProperties().putValue(PreviewProperty.SHOW_NODE_LABELS, Boolean.TRUE);
             model.getProperties().putValue(PreviewProperty.SHOW_EDGE_LABELS, Boolean.TRUE);
-            model.getProperties().putValue(PreviewProperty.NODE_LABEL_COLOR, new DependantOriginalColor(Color.GRAY));
+            model.getProperties().putValue(PreviewProperty.NODE_LABEL_COLOR, new DependantOriginalColor(Color.MAGENTA));
             model.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(Color.BLACK));
             model.getProperties().putValue(PreviewProperty.EDGE_THICKNESS, 0.3f);
             model.getProperties().putValue(PreviewProperty.NODE_LABEL_FONT, model.getProperties().getFontValue(PreviewProperty.NODE_LABEL_FONT).deriveFont(16f));
