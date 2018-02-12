@@ -47,9 +47,9 @@ public class FSM extends SimilarityMeasureFinal {
         double val = -99;
         double[][] Vcomum = this.filterCommonVotes(a1, a2);
         if (Vcomum[0].length > minComunUsers) {
-            val = pc.calculate(Vcomum[0], Vcomum[1]);//a1, a2);
+            val = pc.calculate(Vcomum[0], Vcomum[1]);
             if (Double.isNaN(val)) {
-                val = 1;//
+                val = 1;
             }
         }
         return val;

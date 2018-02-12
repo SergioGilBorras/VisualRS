@@ -23,7 +23,7 @@ import org.etsisi.visualrs.matrices.DoubleMatrix;
  *
  * @author Sergio Gil Borras
  * @version 1.0 - August 2017
- * @see "Related to article 'Tree graph visualization of recommender systems related information'" 
+ * @see "Related to article 'Tree graph visualization of recommender systems related information'"
  */
 public class NumberVotes extends QualityMeasureByNode {
 
@@ -35,7 +35,7 @@ public class NumberVotes extends QualityMeasureByNode {
      * @param MV LoadData Matrix of votes to use.
      */
     public NumberVotes(LoadData MV) {
-        super(null);//MV.getRankMatrix());
+        super(null);
         matrizDispersa = MV.getRankMatrix();
         name = "NumberVotes";
     }
@@ -56,7 +56,6 @@ public class NumberVotes extends QualityMeasureByNode {
                         usumVotos += 1;
                     }
                 }
-                //System.out.println(" -- " + usumVotos);
                 sumVotos[item] = usumVotos;
                 usumVotos = 0;
 

@@ -147,7 +147,6 @@ public class DoubleMatrix {
             oos.close();
             fos.close();
         } catch (IOException ioe) {
-            //ioe.printStackTrace();
         }
     }
 
@@ -168,12 +167,10 @@ public class DoubleMatrix {
             ois.close();
             fis.close();
         } catch (IOException ioe) {
-            //ioe.printStackTrace();
             System.out.println("IOException: " + ioe.getMessage());
             return;
         } catch (ClassNotFoundException c) {
             System.out.println("Class not found");
-            //c.printStackTrace();
             return;
         }
     }
@@ -306,7 +303,6 @@ public class DoubleMatrix {
             double totalCol = 0;
             int numEle = 0;
             for (Map.Entry<Integer, Double> entrySet1 : value.entrySet()) {
-                //Integer key1 = entrySet1.getKey();
                 totalCol += entrySet1.getValue();
                 numEle++;
 
@@ -346,7 +342,6 @@ public class DoubleMatrix {
             double totalCol = 0;
             int numEle = 0;
             for (Map.Entry<Integer, Double> entrySet1 : value.entrySet()) {
-                //Integer key1 = entrySet1.getKey();
                 totalCol += entrySet1.getValue();
                 numEle++;
 

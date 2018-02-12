@@ -64,8 +64,6 @@ public class ClosenessCentralityWqW1 extends QualityMeasureByNode {
                 if (res[item1] != 0) {
                     res[item1] = 1 / res[item1];
                 }
-
-                //System.err.println(" -- " + res[item1]);
             }
             resultCalculate = res;
         }

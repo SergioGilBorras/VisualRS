@@ -64,13 +64,9 @@ public class DistanceMatrixW1 {
         System.out.println("\nGenerating distance matrix with weight = 1...");
         treeDistanceMatrixW1 = new DoubleMatrix(primMatrix.columns, primMatrix.columns);
         treeDistanceMatrixW1.fill(-1);
-        //long time = System.currentTimeMillis();
+
         long oldProgress = 100;
         for (int item = 0; item < primMatrix.columns; item++) {
-            //if (item % 500 == 0) {
-            //    System.out.println("Round Item:: " + item + " - " + (System.currentTimeMillis() - time));
-            //    time = System.currentTimeMillis();
-            //}
             double progress = ((item * 100) / primMatrix.columns);
             if (Math.round(progress) % 25 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
                 System.out.print(" " + Math.round(progress) + "% ");
@@ -80,7 +76,6 @@ public class DistanceMatrixW1 {
                 oldProgress = Math.round(progress);
             }
             treeDistanceMatrixW1.putColumn(item, new DoubleMatrix(DIJKSTRAW1(item)));
-            //treeDistanceMatrixW1.putColumn(item, DIJKSTRAW1(item));
         }
         System.out.println(" 100%");
     }
@@ -124,7 +119,6 @@ public class DistanceMatrixW1 {
             treeDistanceMatrixW1.save("./data/" + MRM.getFileName() + "/" + MRM.getSimilarityMeasureName() + "/distanciaW1Matrix.dat");
             System.out.println(" Done.");
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }

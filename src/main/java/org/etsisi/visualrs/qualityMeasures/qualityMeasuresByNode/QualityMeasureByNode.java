@@ -16,7 +16,6 @@
  */
 package org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode;
 
-//import org.etsisi.visualrs.matrices.DoubleMatrix;
 import org.jblas.DoubleMatrix;
 
 /**

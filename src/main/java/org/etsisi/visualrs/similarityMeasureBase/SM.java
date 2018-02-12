@@ -20,7 +20,7 @@ package org.etsisi.visualrs.similarityMeasureBase;
  *
  * @author Sergio Gil Borras
  * @version 1.0 - August 2017
- * @see "Related to article 'Tree graph visualization of recommender systems related information'" 
+ * @see "Related to article 'Tree graph visualization of recommender systems related information'"
  */
 public class SM extends SimilarityMeasureBase {
 
@@ -54,7 +54,6 @@ public class SM extends SimilarityMeasureBase {
         double sumIndexC = 0;
 
         for (int i = 0; i < a1.length; i++) {
-            //System.err.println(a1[i] + " -- " + a2[i]);
             if (a1[i] >= border && a2[i] >= border) {
                 nIndexA++;
                 sumIndexA += (1 - Math.pow(a1[i] - a2[i], 2)) * (SP[i] * SP[i]);
@@ -86,7 +85,7 @@ public class SM extends SimilarityMeasureBase {
             C = sumIndexC / nIndexC;
             div++;
         }
-        
+
         return (1 / div) * (A + B + C);
 
     }

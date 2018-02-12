@@ -44,7 +44,7 @@ public class FJaccard extends SimilarityMeasureFinal {
         if (Vcomum[0].length > minComunUsers) {
             val = pc.calculate(a1, a2);
             if (Double.isNaN(val)) {
-                val = 1;//
+                val = 1;
             }
         }
         return val;

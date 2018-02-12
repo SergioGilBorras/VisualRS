@@ -68,13 +68,9 @@ public class DistanceMatrixWOuts {
         System.out.println("\nGenerating distace matrix w_outs...");
         treeDistanceMatrixWouts = new DoubleMatrix(primMatrix.columns, primMatrix.columns);
         treeDistanceMatrixWouts.fill(-1);
-        //long time = System.currentTimeMillis();
+
         long oldProgress = 100;
         for (int item = 0; item < primMatrix.columns; item++) {
-            //if (item % 500 == 0) {
-            //    System.out.println("Round Item:: " + item + " - " + (System.currentTimeMillis() - time));
-            //    time = System.currentTimeMillis();
-            //}
             double progress = ((item * 100) / primMatrix.columns);
             if (Math.round(progress) % 25 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
                 System.out.print(" " + Math.round(progress) + "% ");
@@ -84,7 +80,6 @@ public class DistanceMatrixWOuts {
                 oldProgress = Math.round(progress);
             }
             treeDistanceMatrixWouts.putColumn(item, new DoubleMatrix(DIJKSTRAWouts(item)));
-            //treeDistanceMatrixWouts.putColumn(item, DIJKSTRAWouts(item));
         }
         System.out.println(" 100%");
     }
@@ -130,7 +125,6 @@ public class DistanceMatrixWOuts {
             treeDistanceMatrixWouts.save("./data/" + MRM.getFileName() + "/" + MRM.getSimilarityMeasureName() + "/distanciaWoutsMatrix.dat");
             System.out.println(" Done.");
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }

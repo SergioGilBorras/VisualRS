@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import org.etsisi.visualrs.models.DistanceMatrixW1;
 import org.etsisi.visualrs.models.DistanceMatrixWOuts;
 import org.etsisi.visualrs.models.DistanceMatrixWq;
-//import org.etsisi.visualrs.matrices.DoubleMatrix;
 import org.jblas.DoubleMatrix;
 
 /**

@@ -22,7 +22,7 @@ import org.etsisi.visualrs.similarityMeasureBase.Pearson;
  *
  * @author Sergio Gil Borras
  * @version 1.0 - August 2017
- * @see "Related to article 'Tree graph visualization of recommender systems related information'" 
+ * @see "Related to article 'Tree graph visualization of recommender systems related information'"
  */
 public class FPearson extends SimilarityMeasureFinal {
 
@@ -43,7 +43,7 @@ public class FPearson extends SimilarityMeasureFinal {
         if (Vcomum[0].length > minComunUsers) {
             val = pc.calculate(Vcomum[0], Vcomum[1]);
             if (Double.isNaN(val)) {
-                val = 1;//
+                val = 1;
             }
         }
         return val;

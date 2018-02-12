@@ -46,7 +46,6 @@ import org.openide.util.Lookup;
 import static org.etsisi.visualrs.io.Exports.TypeFileExport.*;
 import org.etsisi.visualrs.models.MaximumSpanningTreeMatrix;
 import org.gephi.preview.types.DependantOriginalColor;
-//import org.etsisi.visualrs.matrices.DoubleMatrix;
 import org.jblas.DoubleMatrix;
 
 /**
@@ -132,7 +131,6 @@ public class Exports {
             }
             bw.close();
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println("Export exception: " + e.getMessage());
         }
     }
@@ -260,7 +258,6 @@ public class Exports {
                 ec.exportFile(new File("./data/" + fileName + "/" + correlationName + "/gephi_" + correlationName + ".svg"));
             }
         } catch (IOException e) {
-            //e.printStackTrace();
             System.out.println("Exception (Export): " + e.getMessage());
         }
     }

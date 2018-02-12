@@ -22,7 +22,7 @@ import java.util.Arrays;
  *
  * @author Sergio Gil Borras
  * @version 1.0 - August 2017
- * @see "Related to article 'Tree graph visualization of recommender systems related information'" 
+ * @see "Related to article 'Tree graph visualization of recommender systems related information'"
  */
 public class MMD extends SimilarityMeasureBase {
 
@@ -44,7 +44,6 @@ public class MMD extends SimilarityMeasureBase {
             }
             nVotosA1[(int) Math.round(a1[i])]++;
             nVotosA2[(int) Math.round(a2[i])]++;
-            //System.out.println("RAS:: " + (int) Math.round(a1[i]) + " -- " + (int) Math.round(a2[i]));
         }
         double dv1 = (a1.length - nVotosA1[0]);
         double carA1 = 0;
@@ -60,19 +59,14 @@ public class MMD extends SimilarityMeasureBase {
         for (int i = 1; i < 6; i++) {
             votos += Math.pow(nVotosA1[i] - nVotosA2[i], 2) - carA1 - carA2;
         }
-//        if (votos > 1 || votos < -1) {
-//            System.out.println("RASTA-------voto:: " + votos);
-//        }
+
         votos /= 5;
         if (votos == -1) {
             return 0;
         }
         double res = 1 / (1 + votos);
-        //if (res == Double.POSITIVE_INFINITY || res == Double.NEGATIVE_INFINITY) {
-        //    System.out.println("RAS-VOTO:: " + res + " -- " + votos);
-        //}
-        return res;
 
+        return res;
     }
 
 }

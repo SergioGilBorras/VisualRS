@@ -26,7 +26,7 @@ import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.NumberOuts;
  *
  * @author Sergio Gil Borras
  * @version 1.0 - August 2017
- * @see "Related to article 'Tree graph visualization of recommender systems related information'" 
+ * @see "Related to article 'Tree graph visualization of recommender systems related information'"
  */
 public class QualityMeasureCorrelationHistogram extends QualityMeasureFinal {
 
@@ -57,9 +57,6 @@ public class QualityMeasureCorrelationHistogram extends QualityMeasureFinal {
             ArrayList<Double> valB = new ArrayList<>();
             for (Double d : Lout) {
                 if (d != old) {
-                    //if (old != -1) {
-                    //    System.out.println(old + ":" + num);
-                    //}
                     if (old > 1) {
                         double aux = (numOld / 2);
                         valA.add(aux);
@@ -71,7 +68,7 @@ public class QualityMeasureCorrelationHistogram extends QualityMeasureFinal {
                 }
                 num++;
             }
-            //System.out.println(old + ":" + num);
+
             double aux = (numOld / 2);
             valA.add(aux);
             valB.add(num);

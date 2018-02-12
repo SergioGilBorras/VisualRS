@@ -19,7 +19,6 @@ package org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode;
 import java.util.ArrayList;
 import org.etsisi.visualrs.models.DistanceMatrixW1;
 import org.etsisi.visualrs.models.DistanceMatrixWq;
-//import org.etsisi.visualrs.matrices.DoubleMatrix;
 import org.jblas.DoubleMatrix;
 
 /**
@@ -95,7 +94,6 @@ public class AvgDistanceLeavesWqW1 extends QualityMeasureByNode {
                     for (Integer i : hojas) {
 
                         if (ColumItem[i] == Double.MAX_VALUE) {
-                            //System.out.println("RAS:: " + item1+ " -- " + i + " __ " + ColumItem[i]);
                             mediaHojas += 1;
                         } else {
                             mediaHojas += ColumItem[i];
@@ -103,7 +101,6 @@ public class AvgDistanceLeavesWqW1 extends QualityMeasureByNode {
 
                     }
                     distanciaHoja[item1] = (mediaHojas / nHojas);
-                    //System.out.println("RAS:: " + distanciaHoja[item1] + " - " + mediaHojas + " - " + nHojas);
                     mediaHojas = 0;
                 }
             }

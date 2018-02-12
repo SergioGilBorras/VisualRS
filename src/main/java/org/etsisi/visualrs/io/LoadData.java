@@ -131,11 +131,7 @@ public final class LoadData {
                 maxValue = (maxValue > rank) ? maxValue : rank;
                 minValue = (minValue < rank) ? minValue : rank;
             }
-            //System.out.println("Matrix:: " + maxUser + " X " + maxItem);
-            //System.out.println("Matrix:: " + minUser + " X " + minItem);
-            //System.out.println("MatrixVAL:: " + minValue + " -- " + maxValue);
-            //Runtime runtime = Runtime.getRuntime();
-            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+
             rankMatrix = new DoubleMatrix(maxUser, maxItem);
 
             rankMatrix.fill(-1);
@@ -151,12 +147,9 @@ public final class LoadData {
             }
 
             System.out.println(" Done.");
-            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
-            //e.printStackTrace();
             System.err.println("Exception:: " + e.getMessage());
-            //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 
@@ -195,11 +188,7 @@ public final class LoadData {
                 maxValue = (maxValue > rank) ? maxValue : rank;
                 minValue = (minValue < rank) ? minValue : rank;
             }
-            //System.out.println("Matrix:: " + maxUser + " X " + maxItem);
-            //System.out.println("Matrix:: " + minUser + " X " + minItem);
-            //System.out.println("MatrixVAL:: " + minValue + " -- " + maxValue);
-            //Runtime runtime = Runtime.getRuntime();
-            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+
             rankMatrix = new DoubleMatrix(maxUser, maxItem);
 
             rankMatrix.fill(-1);
@@ -215,12 +204,9 @@ public final class LoadData {
             }
 
             System.out.println(" Done.");
-            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
-            //e.printStackTrace();
             System.err.println("Exception: " + e.getMessage());
-            //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 
@@ -261,17 +247,7 @@ public final class LoadData {
             }
             maxUser++;
             maxItem++;
-//            if (maxUser > 50000) {
-//                maxUser = 50000;
-//            }
-//            if (maxItem > 5000) {
-//                maxItem = 5000;
-//            }
-            //System.out.println("Matrix:: " + maxUser + " X " + maxItem);
-            //System.out.println("Matrix:: " + minUser + " X " + minItem);
-            //System.out.println("MatrixVAL:: " + minValue + " -- " + maxValue);
-            //Runtime runtime = Runtime.getRuntime();
-            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+
             rankMatrix = new DoubleMatrix(maxUser, maxItem);
 
             rankMatrix.fill(-1);
@@ -288,12 +264,9 @@ public final class LoadData {
             }
 
             System.out.println(" Done.");
-            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
-            //e.printStackTrace();
             System.err.println("Exception: " + e.getMessage());
-            //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 
@@ -348,17 +321,7 @@ public final class LoadData {
             }
             maxUser++;
             maxItem++;
-//            if (maxUser > 50000) {
-//                maxUser = 50000;
-//            }
-//            if (maxItem > 5000) {
-//                maxItem = 5000;
-//            }
-            //System.out.println("Matrix MAX:: " + maxUser + " X " + maxItem);
-            //System.out.println("Matrix MIN:: " + minUser + " X " + minItem);
-            //System.out.println("Matrix VAL:: " + minValue + " -- " + maxValue);
-            //Runtime runtime = Runtime.getRuntime();
-            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
+
             rankMatrix = new DoubleMatrix(maxUser, maxItem);
 
             rankMatrix.fill(-1);
@@ -383,12 +346,9 @@ public final class LoadData {
             }
 
             System.out.println(" Done.");
-            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
-            //e.printStackTrace();
             System.err.println("Exception: " + e.getMessage());
-            //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 
@@ -419,9 +379,6 @@ public final class LoadData {
             }
             maxUser = nlinea;
 
-            //System.out.println("Matrix MAX:: " + maxUser + " X " + maxItem);
-            //Runtime runtime = Runtime.getRuntime();
-            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
             rankMatrix = new DoubleMatrix(maxUser, maxItem);
 
             rankMatrix.fill(-1);
@@ -446,12 +403,9 @@ public final class LoadData {
             }
 
             System.out.println(" Done.");
-            //System.out.println("MEMORY:: " + runtime.maxMemory() + " - " + runtime.totalMemory() + " - " + runtime.freeMemory());
 
         } catch (Exception e) {
-            //e.printStackTrace();
             System.err.println("Exception: " + e.getMessage());
-            //System.out.println("R: " + user + " -- " + item + " -- " + rank);
         }
     }
 
@@ -465,7 +419,6 @@ public final class LoadData {
             rankMatrix.save("./data/" + file.getName() + "/votosMatrix.dat");
             System.out.println(" Done.");
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }
@@ -485,7 +438,6 @@ public final class LoadData {
             rankMatrix.save("./data/" + file.getName() + "/" + FCName + "/votosMatrix.dat");
             System.out.println(" Done.");
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }
@@ -499,7 +451,6 @@ public final class LoadData {
             }
             System.out.println(" Done.");
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println("Excepcion loading rank matrix: " + e.getMessage());
         }
     }
@@ -516,7 +467,6 @@ public final class LoadData {
             rankMatrix.load("./data/" + file.getName() + "/" + FCName + "/votosMatrix.dat");
             System.out.println(" Done.");
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println("Excepcion loading rank matrix: " + e.getMessage());
         }
     }

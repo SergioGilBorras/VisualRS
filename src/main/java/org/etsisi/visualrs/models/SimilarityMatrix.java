@@ -112,7 +112,6 @@ public final class SimilarityMatrix {
             }
         }
         if (columnsToRemove.size() > 0) {
-            //System.out.println("New matrix:: " + itemOk + " x " + itemOk);
             DoubleMatrix correlationMatrixAux = new DoubleMatrix(itemOk, itemOk);
             org.etsisi.visualrs.matrices.DoubleMatrix votosMatrixAux = new org.etsisi.visualrs.matrices.DoubleMatrix(votosMatrix.rows, itemOk);
             votosMatrixAux.fill(votosMatrix.getFill());
@@ -148,14 +147,8 @@ public final class SimilarityMatrix {
         similarityMatrix = new DoubleMatrix(votosMatrix.columns, votosMatrix.columns);
         similarityMatrix.fill(-99);
 
-        //long tIni = System.currentTimeMillis();
         long oldProgress = 100;
         for (int item = 0; item < votosMatrix.columns; item++) {
-
-            //if (item % 100 == 0) {
-            //    System.out.println("SIM load:: " + item + " :: " + (System.currentTimeMillis() - tIni));
-            //    tIni = System.currentTimeMillis();
-            //}
             double progress = ((item * 100) / votosMatrix.columns);
             if (Math.round(progress) % 25 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
                 System.out.print(" " + Math.round(progress) + "% ");
@@ -192,7 +185,6 @@ public final class SimilarityMatrix {
             similarityMatrix.save("./data/" + MV.getFileName() + "/" + FC.getName() + "/correlationMatrix.dat");
             System.out.println(" Done.");
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }

@@ -110,13 +110,12 @@ public final class MaximumSpanningTreeMatrix {
         ArrayList<Integer> visitados = new ArrayList();
         ArrayList<Integer> novisitados = new ArrayList();
 
-        int nMediaCIndex = 0;//indexMaxVotos();
+        int nMediaCIndex = 0;
         for (int a = 0; a < correlationMatrix.columns; a++) {
             novisitados.add(a);
         }
 
         novisitados.remove(nMediaCIndex);
-        //System.out.println("NODO Ini Prim: " + nMediaCIndex);
 
         boolean[] avisitados = new boolean[correlationMatrix.columns];
         Arrays.fill(avisitados, false);
@@ -126,16 +125,10 @@ public final class MaximumSpanningTreeMatrix {
         long oldProgress = 100;
         while (nvisitados < correlationMatrix.columns) {
 
-            //Collections.shuffle(visitados);
             for (Integer v : visitados) {
-                //Collections.shuffle(novisitados);
                 for (Integer a : novisitados) {
                     if (!Objects.equals(a, v) && !avisitados[a]) {
                         newMAX = correlationMatrix.get(a, v);
-
-                        //if (Double.isNaN(newMAX)) {
-                        //    System.err.println("isNaN::" + a + "::" + v + " - " + MAX + "::" + newMAX);
-                        //}
                         if (MAX < newMAX) {
                             RowMIN = a;
                             ColMIN = v;
@@ -146,9 +139,6 @@ public final class MaximumSpanningTreeMatrix {
                 }
             }
             MST += MAX;
-            //if (nvisitados % 500 == 0) {
-            //    System.err.println("visited.size::" + nvisitados + " _ " + novisitados.size());
-            //}
 
             double progress = ((nvisitados * 100) / correlationMatrix.columns);
             if (Math.round(progress) % 25 == 0 && Math.round(progress) != oldProgress && Math.round(progress) > 0) {
@@ -159,16 +149,7 @@ public final class MaximumSpanningTreeMatrix {
                 oldProgress = Math.round(progress);
             }
 
-            //if (avisitados[RowMIN]) {
-            //    System.err.println("visited.size::" + nvisitados + " _ " + novisitados.size());
-            //    System.err.println("DUPLICATE::" + RowMIN + "::" + ColMIN + " - " + MAX + "::" + (-Double.MAX_VALUE));
-            //    System.err.println("NO VISITED::" + novisitados);
-            //}
             visitados.add(RowMIN);
-            //int as = novisitados.remove(novisitados.indexOf(RowMIN));
-            //if (as != RowMIN) {
-            //    System.err.println("ERROR :: novisitados.remove");
-            //}
             avisitados[RowMIN] = true;
             maximumSpanningTreeMatrix.put(RowMIN, ColMIN, MAX);
             maximumSpanningTreeMatrix.put(ColMIN, RowMIN, MAX);
@@ -178,9 +159,7 @@ public final class MaximumSpanningTreeMatrix {
         }
 
         System.out.println(" 100%");
-        //System.err.println("NO VISITED::" + novisitados);
-        //System.out.println("1-SpanningTree.. Total Weight::" + MST);
-        //System.out.println("1-SpanningTree.. AVG Weight::" + (MST / maximumSpanningTreeMatrix.rows));
+
         return MST;
     }
 
@@ -194,7 +173,6 @@ public final class MaximumSpanningTreeMatrix {
             maximumSpanningTreeMatrix.save("./data/" + MC.getFileName() + "/" + MC.getSimilarityMeasureName() + "/MRMMatrix.dat");
             System.out.println(" Done.");
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println("Exception: " + e.getMessage());
         }
     }
