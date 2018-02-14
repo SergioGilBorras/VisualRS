@@ -96,13 +96,7 @@ The dataset is then loaded into the data structure:
 LoadData MV = new LoadData(myFile, DatasetToRead.FilmTrust);
 ```
 
-To use the chosen similarity measure, we generate the similarity vector, and then we instantiate the `FSM` class: the first parameter is the threshold between positive and negative rating values. We have considered the value 4 in our tests.
-
-```Java
-GenerateSimilarityVectorsSimple gvss = new GenerateSimilarityVectorsSimple(4, MV);
-```
-
-Then, we will create the similarity matrix from: a) The class where the dataset (`LoadData`) is loaded, and b) A final similarity measure. In this case we have chosen Pearson correlation. We can choose other final similarity measures from the `org.etsisi.visualrs.similarityMeasureFinal` package or we can create our own similarity measures as we will explain later.
+Then, we will create the similarity matrix from: a) The class where the dataset (`LoadData`) is loaded, and b) A final similarity measure. In this case we have chosen Pearson correlation. We can choose other final similarity measures from the `org.etsisi.visualrs.similarityMeasureFinal` package or we can create our own similarity measures as we will explain later. If we use the `FSM` similarity measure, first, we need to generate the similarity vector (`GenerateSimilarityVectorsSimple` class). You can learn more about this on the [javadoc](https://sergiogilborras.github.io/VisualRS/org/etsisi/visualrs/models/GenerateSimilarityVectorsSimple).
 
 ```Java
 SimilarityMatrix MC = new SimilarityMatrix(new FPearson(), MV);
@@ -114,13 +108,12 @@ Then we will make the maximum spanning tree, by using the `MaximumSpanningTreeMa
 MaximumSpanningTreeMatrix MRM = new MaximumSpanningTreeMatrix(MC);
 ```
 
-In order to test the quality of the resulting tree graph, we select some metrics based on distance:
+In order to test the quality of the resulting tree graph, we select any metrics based on distance. In this example we have decided to use a matrix distance with `weight = 1`, but we have more distance matrices implementations in the 
+[`org.etsisi.visualrs.models`](https://sergiogilborras.github.io/VisualRS/org/etsisi/visualrs/models/package-summary.html) package.
 
 ```Java
 NumberOuts nouts = new NumberOuts(MRM);
 DistanceMatrixW1 MDW1 = new DistanceMatrixW1(MRM);
-DistanceMatrixW1 MDWq = new DistanceMatrixWq(MRM);
-DistanceMatrixWOuts MDWouts = new DistanceMatrixWOuts(MRM, nouts);
 ```
 
 Now we can execute several quality measures. In this example we use the closeness centrality quality measure. We are looking for a positive correlation result (Pearson correlation) between the closeness centrality and the #OUT of each graph node.
