@@ -14,7 +14,10 @@ import org.etsisi.visualrs.models.DistanceMatrixW1;
 import org.etsisi.visualrs.models.MaximumSpanningTreeMatrix;
 import org.etsisi.visualrs.models.SimilarityMatrix;
 import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.ClosenessCentralityWqW1;
+import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.NumberOuts;
 import org.etsisi.visualrs.qualityMeasures.qualityMeasuresFinal.QualityMeasureCorrelation;
+import org.etsisi.visualrs.similarityMeasureBase.Pearson;
+import org.etsisi.visualrs.similarityMeasureFinal.FPearson;
 
 public class GettingStarted {
 
@@ -29,15 +32,15 @@ public class GettingStarted {
 
             LoadData MV = new LoadData(myFile, DatasetToRead.FilmTrust);
 
-            SimilarityMatrix MC = new SimilarityMatrix(new SMPearsonExample(), MV);
+            SimilarityMatrix MC = new SimilarityMatrix(new FPearson(), MV);
 
             MaximumSpanningTreeMatrix MRM = new MaximumSpanningTreeMatrix(MC);
 
-            QMOutsNumber nouts = new QMOutsNumber(MRM);
+            NumberOuts nouts = new NumberOuts(MRM);
 
             DistanceMatrixW1 MDW1 = new DistanceMatrixW1(MRM);
 
-            SMBPearsonExample pearsonCorrelation = new SMBPearsonExample();
+            Pearson pearsonCorrelation = new Pearson();
             ClosenessCentralityWqW1 pcW1 = new ClosenessCentralityWqW1(MDW1);
             QualityMeasureCorrelation QMC = new QualityMeasureCorrelation(pearsonCorrelation, nouts, pcW1);
 
