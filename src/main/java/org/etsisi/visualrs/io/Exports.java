@@ -21,9 +21,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.ArrayUtils;
 import org.gephi.graph.api.Edge;
 import org.gephi.graph.api.GraphController;
 import org.gephi.graph.api.GraphModel;
@@ -47,6 +50,7 @@ import static org.etsisi.visualrs.io.Exports.TypeFileExport.*;
 import org.etsisi.visualrs.models.MaximumSpanningTreeMatrix;
 import org.gephi.preview.types.DependantOriginalColor;
 import org.jblas.DoubleMatrix;
+import org.etsisi.visualrs.qualityMeasures.qualityMeasuresByNode.NumberVotes;
 
 /**
  * This class generates the graphics about a maximum spanning tree matrix
@@ -63,10 +67,25 @@ public class Exports {
     PreviewModel model = null;
     UndirectedGraph undirectedGraph = null;
 
+    double[] geoDataColor = null;
+    boolean EdgeBySimilarityColor = false;
+
+    Color colorNodes = Color.BLACK;
+    Color colorTags = Color.MAGENTA;
+    Color colorEdges = Color.BLACK;
+
+    float sizeNodes = 15;
+    float sizeTags = 16;
+
     String correlationName;
     String fileName;
 
     TypeFileExport TFE;
+
+    double maxN = -Double.MAX_VALUE;
+    double minN = -Double.MAX_VALUE;
+    double maxE = -Double.MAX_VALUE;
+    double minE = Double.MAX_VALUE;
 
     /**
      * Constructor of the class
@@ -80,6 +99,35 @@ public class Exports {
         this.fileName = MRM.getFileName();
         primMatrix = MRM.getMaximumSpanningTreeMatrix();
 
+    }
+
+    public void SetColorNodesByVotes(LoadData MV) throws Exception {
+        NumberVotes NV = new NumberVotes(MV);
+        geoDataColor = NV.calculate();
+    }
+
+    public void setColorNodes(Color color) {
+        colorNodes = color;
+    }
+
+    public void setSizeNodes(float size) {
+        sizeNodes = size;
+    }
+
+    public void setColorTags(Color color) {
+        colorTags = color;
+    }
+
+    public void setSizeTags(float size) {
+        sizeTags = size;
+    }
+
+    public void setColorEdges(Color color) {
+        colorEdges = color;
+    }
+
+    public void setColorEdgeBySimilarity() {
+        EdgeBySimilarityColor = true;
     }
 
     /**
@@ -135,6 +183,59 @@ public class Exports {
         }
     }
 
+    private Color getColorToValue(double d, double max, double min) {
+        Color c;
+        double dif = max - min;
+        double stp = dif / 9;
+        int cc = (int) Math.round((d - min) / stp);
+//        System.err.println("d:" + d);
+//        System.err.println("max:" + max);
+//        System.err.println("min:" + min);
+//        System.err.println("cc:" + cc);
+//        System.err.println("------");
+        switch (cc) {
+            case 0:
+                c = new Color(255, 0, 0);
+                break;
+            case 1:
+                c = new Color(255, 90, 4);
+                break;
+            case 2:
+                c = new Color(255, 156, 0);
+                break;
+            case 3:
+                c = new Color(255, 198, 0);
+                break;
+            case 4:
+                c = new Color(255, 255, 0);
+                break;
+            case 5:
+                c = new Color(222, 255, 0);
+                break;
+            case 6:
+                c = new Color(0, 255, 0);
+                break;
+            case 7:
+                c = new Color(0, 160, 140);
+                break;
+            case 8:
+                c = new Color(0, 0, 255);
+                break;
+            case 9:
+                c = new Color(132, 8, 255);
+                break;
+            /* case 10:
+             c = new Color(128, 0, 128);
+             break;
+             case 11:
+             c = new Color(206, 0, 99);
+             break;*/
+            default:
+                c = new Color(0, 0, 0);
+        }
+        return c;
+    }
+
     /**
      * Generate a graphics of the type file selected
      *
@@ -158,17 +259,51 @@ public class Exports {
                 //Create  nodes
                 Node n0 = graphModel.factory().newNode("n" + i);
                 n0.setLabel(String.valueOf(i));
-                n0.setSize(3f);
+                n0.setSize(sizeNodes);
+
                 n0.setAlpha(0f);
-                n0.setColor(Color.BLACK);
+                if (geoDataColor != null) {
+                    if (maxN == -Double.MAX_VALUE) {
+                        maxN = Collections.max(Arrays.asList(ArrayUtils.toObject(geoDataColor)));
+                        minN = Collections.min(Arrays.asList(ArrayUtils.toObject(geoDataColor)));
+                    }
+                    n0.setColor(getColorToValue(Math.log10(geoDataColor[i] - minN + 1), 1.2, 0));
+                } else {
+                    n0.setColor(colorNodes);
+                }
+
                 undirectedGraph.addNode(n0);
             }
+
+            // Calculate MAX and MIN values
+            if (maxE == -Double.MAX_VALUE) {
+                for (int i = 0; i < primMatrix.columns; i++) {
+                    for (int ii = i + 1; ii < primMatrix.rows; ii++) {
+                        double value = primMatrix.get(i, ii);
+                        if (maxE < value) {
+                            maxE = value;
+                        }
+                        if (value > -99 && minE > value) {
+                            minE = value;
+                        }
+                    }
+                }
+
+            }
+
+            // Create edges
             for (int i = 0; i < primMatrix.columns; i++) {
                 for (int ii = i + 1; ii < primMatrix.rows; ii++) {
                     double value = primMatrix.get(i, ii);
+                    double valueC = value;
                     if (value >= -1) {
                         value = 1;
                         Edge e0 = graphModel.factory().newEdge(undirectedGraph.getNode("n" + i), undirectedGraph.getNode("n" + ii), EdgeDirection.UNDIRECTED.ordinal(), value, false);
+                        if (EdgeBySimilarityColor) {
+                            e0.setAlpha(0f);
+                            EdgeColor EC = new EdgeColor(getColorToValue(valueC, maxE, minE));
+                            e0.setColor(EC.getCustomColor());
+                        }
                         undirectedGraph.addEdge(e0);
                     }
                 }
@@ -237,17 +372,21 @@ public class Exports {
             }
             thirdLayout.endAlgo();
 
-            model.getProperties().putValue(PreviewProperty.SHOW_NODE_LABELS, Boolean.TRUE);
-            model.getProperties().putValue(PreviewProperty.SHOW_EDGE_LABELS, Boolean.TRUE);
-            model.getProperties().putValue(PreviewProperty.NODE_LABEL_COLOR, new DependantOriginalColor(Color.MAGENTA));
-            model.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(Color.BLACK));
+            model.getProperties().putValue(PreviewProperty.SHOW_NODE_LABELS, ((sizeTags == 0) ? Boolean.FALSE : Boolean.TRUE));
+            model.getProperties().putValue(PreviewProperty.SHOW_EDGE_LABELS, Boolean.FALSE);
+            model.getProperties().putValue(PreviewProperty.NODE_LABEL_COLOR, new DependantOriginalColor(colorTags));
+            if (EdgeBySimilarityColor) {
+                model.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(EdgeColor.Mode.ORIGINAL));
+            } else {
+                model.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(Color.BLACK));
+            }
             model.getProperties().putValue(PreviewProperty.EDGE_THICKNESS, 0.3f);
-            model.getProperties().putValue(PreviewProperty.NODE_LABEL_FONT, model.getProperties().getFontValue(PreviewProperty.NODE_LABEL_FONT).deriveFont(16f));
+            model.getProperties().putValue(PreviewProperty.NODE_LABEL_FONT, model.getProperties().getFontValue(PreviewProperty.NODE_LABEL_FONT).deriveFont(sizeTags));
             model.getProperties().putValue(PreviewProperty.NODE_LABEL_PROPORTIONAL_SIZE, Boolean.TRUE);
-            model.getProperties().putValue(PreviewProperty.NODE_BORDER_WIDTH, 1);
-            model.getProperties().putValue(PreviewProperty.NODE_BORDER_COLOR, new DependantColor(Color.BLACK));
+            model.getProperties().putValue(PreviewProperty.NODE_BORDER_WIDTH, 0);
+            model.getProperties().putValue(PreviewProperty.NODE_BORDER_COLOR, new DependantColor(Color.WHITE));
         }
-//Export
+        //Export
         ExportController ec = Lookup.getDefault().lookup(ExportController.class);
         try {
             if (TFE == PDF) {

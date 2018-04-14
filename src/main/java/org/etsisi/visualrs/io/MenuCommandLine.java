@@ -5,6 +5,7 @@
  */
 package org.etsisi.visualrs.io;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -90,6 +91,166 @@ public class MenuCommandLine {
         System.out.println(" ***               UPM - ETSISI - 2017                ***");
         System.out.println(" ***                                                  ***");
         System.out.println(" ********************************************************\n");
+    }
+
+    static public int selectColors(String text) {
+        int re = -1;
+        System.out.println("\nHex Value - Color " + text + ": [0-255]");
+
+        try {
+            BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+            int i = Integer.parseInt(br1.readLine());
+            if (i > 255 || i < 0) {
+                System.err.println("Insert a value between 0-255.");
+            } else {
+                re = i;
+            }
+        } catch (NumberFormatException ex) {
+            System.err.println("Invalid Format!");
+        } catch (IOException ex) {
+            System.err.println("Invalid Format!");
+        }
+        return re;
+    }
+
+    static public Color selectColorsRGB() {
+        int reR = -1;
+        int reG = -1;
+        int reB = -1;
+        System.out.println("\nColors RGB: ");
+
+        while (reR == -1) {
+            reR = selectColors("RED");
+        }
+        while (reG == -1) {
+            reG = selectColors("GREEN");
+        }
+        while (reB == -1) {
+            reB = selectColors("BLUE");
+        }
+
+        return new Color(reR, reG, reB);
+    }
+
+    static public int selectSizeNodes() {
+        int re = -1;
+        System.out.println("\nSize of the Nodes: [1-3]");
+
+        System.out.println("\t1) - Small.");
+        System.out.println("\t2) - Medium.");
+        System.out.println("\t3) - Big.");
+
+        try {
+            BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+            int i = Integer.parseInt(br1.readLine());
+            if (i > 3 || i < 1) {
+                System.err.println("Insert a value between 1-3.");
+            } else {
+                re = i;
+            }
+        } catch (NumberFormatException ex) {
+            System.err.println("Invalid Format!");
+        } catch (IOException ex) {
+            System.err.println("Invalid Format!");
+        }
+        return re - 1;
+    }
+
+    static public int selectSizesTags() {
+        int re = -1;
+        System.out.println("\nSize of the Tags: [1-3]");
+
+        
+        System.out.println("\t1) - Small.");
+        System.out.println("\t2) - Medium.");
+        System.out.println("\t3) - Big.");
+        System.out.println("\t4) - Not show.");
+
+        try {
+            BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+            int i = Integer.parseInt(br1.readLine());
+            if (i > 4 || i < 1) {
+                System.err.println("Insert a value between 1-4.");
+            } else {
+                re = i;
+            }
+        } catch (NumberFormatException ex) {
+            System.err.println("Invalid Format!");
+        } catch (IOException ex) {
+            System.err.println("Invalid Format!");
+        }
+        return re - 1;
+    }
+
+    static public int selectColorsNodes() {
+        int re = -1;
+        System.out.println("\nColors of the Nodes: [1-3]");
+
+        System.out.println("\t1) - Default.");
+        System.out.println("\t2) - Custom Defined.");
+        System.out.println("\t3) - Based on the item relevance.");
+
+        try {
+            BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+            int i = Integer.parseInt(br1.readLine());
+            if (i > 3 || i < 1) {
+                System.err.println("Insert a value between 1-3.");
+            } else {
+                re = i;
+            }
+        } catch (NumberFormatException ex) {
+            System.err.println("Invalid Format!");
+        } catch (IOException ex) {
+            System.err.println("Invalid Format!");
+        }
+        return re - 1;
+    }
+    
+    static public int selectColorsEdges() {
+        int re = -1;
+        System.out.println("\nColors of the Edges: [1-3]");
+
+        System.out.println("\t1) - Default.");
+        System.out.println("\t2) - Custom Defined.");
+        System.out.println("\t3) - Based on the similarity.");
+
+        try {
+            BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+            int i = Integer.parseInt(br1.readLine());
+            if (i > 3 || i < 1) {
+                System.err.println("Insert a value between 1-3.");
+            } else {
+                re = i;
+            }
+        } catch (NumberFormatException ex) {
+            System.err.println("Invalid Format!");
+        } catch (IOException ex) {
+            System.err.println("Invalid Format!");
+        }
+        return re - 1;
+    }
+
+    static public int selectColorsTags() {
+        int re = -1;
+        System.out.println("\nColors of the Tags: [1-2]");
+
+        System.out.println("\t1) - Default.");
+        System.out.println("\t2) - Custom Defined.");
+
+        try {
+            BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+            int i = Integer.parseInt(br1.readLine());
+            if (i > 2 || i < 1) {
+                System.err.println("Insert a value between 1-2.");
+            } else {
+                re = i;
+            }
+        } catch (NumberFormatException ex) {
+            System.err.println("Invalid Format!");
+        } catch (IOException ex) {
+            System.err.println("Invalid Format!");
+        }
+        return re - 1;
     }
 
     private int selectExecution() {

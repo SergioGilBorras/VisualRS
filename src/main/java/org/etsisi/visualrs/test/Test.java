@@ -16,6 +16,7 @@
  */
 package org.etsisi.visualrs.test;
 
+import java.awt.Color;
 import org.etsisi.visualrs.models.GenerateSimilarityVectorsSimple;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -100,6 +101,14 @@ public class Test {
     GenerateSimilarityVectorsSimple gvss;
 
     String fileName;
+    int ColorsNodes = -1;
+    int SizeNodes = -1;
+    int ColorsTags = -1;
+    int SizeTags = -1;
+    int ColorsEdges = -1;
+    Color CNodes = null;
+    Color CEdges = null;
+    Color CTags = null;
 
     /**
      * Point of entry to the application
@@ -118,9 +127,9 @@ public class Test {
         try {
             MenuCommandLine menu = new MenuCommandLine();
             if (menu.isLoadCorrect()) {
-                if(menu.hasFilePath()){
+                if (menu.hasFilePath()) {
                     selectDataset(menu.getFilePath());
-                }else{
+                } else {
                     selectDataset(menu.getDataset());
                 }
                 gvss = new GenerateSimilarityVectorsSimple(4, MV);
@@ -156,7 +165,8 @@ public class Test {
         }
 
     }
-/**
+
+    /**
      * Select the dataset to execute
      */
     private void selectDataset(String pathFile) throws Exception {
@@ -165,6 +175,7 @@ public class Test {
 
         fileName = file.getName();
     }
+
     /**
      * Select the dataset to execute
      */
@@ -196,6 +207,76 @@ public class Test {
      */
     private void execGraphics() throws Exception {
         Exports graphicsGephi = new Exports(MRM);
+        /*-----------------------------------*/
+        if (ColorsNodes == -1) {
+            ColorsNodes = MenuCommandLine.selectColorsNodes();
+        }
+        switch (ColorsNodes) {
+            case 1:
+                if (CNodes == null) {
+                    CNodes = MenuCommandLine.selectColorsRGB();
+                }
+                graphicsGephi.setColorNodes(CNodes);
+                break;
+            case 2:
+                graphicsGephi.SetColorNodesByVotes(MV);
+                break;
+        }
+        /*-----------------------------------*/
+        if (ColorsEdges == -1) {
+            ColorsEdges = MenuCommandLine.selectColorsEdges();
+        }
+        switch (ColorsEdges) {
+            case 1:
+                if (CEdges == null) {
+                    CEdges = MenuCommandLine.selectColorsRGB();
+                }
+                graphicsGephi.setColorEdges(CEdges);
+                break;
+            case 2:
+                graphicsGephi.setColorEdgeBySimilarity();
+                break;
+        }
+        /*-----------------------------------*/
+        if (ColorsTags == -1) {
+            ColorsTags = MenuCommandLine.selectColorsTags();
+        }
+        switch (ColorsTags) {
+            case 1:
+                if (CTags == null) {
+                    CTags = MenuCommandLine.selectColorsRGB();
+                }
+                graphicsGephi.setColorTags(CTags);
+                break;
+        }
+        /*-----------------------------------*/
+        if (SizeNodes == -1) {
+            SizeNodes = MenuCommandLine.selectSizeNodes();
+        }
+        switch (SizeNodes) {
+            case 0:
+                graphicsGephi.setSizeNodes(10);
+                break;
+            case 2:
+                graphicsGephi.setSizeNodes(20);
+                break;
+        }
+        /*-----------------------------------*/
+        if (SizeTags == -1) {
+            SizeTags = MenuCommandLine.selectSizesTags();
+        }
+        switch (SizeTags) {
+            case 0:
+                graphicsGephi.setSizeTags(10);
+                break;
+            case 2:
+                graphicsGephi.setSizeTags(20);
+                break;
+            case 3:
+                graphicsGephi.setSizeTags(0);
+                break;
+        }
+        /*-----------------------------------*/
         for (TypeFileExport p : TypeFileExport.values()) {
             graphicsGephi.execute(p);
         }
