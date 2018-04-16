@@ -95,7 +95,7 @@ public class MenuCommandLine {
 
     static public int selectColors(String text) {
         int re = -1;
-        System.out.println("\nHex Value - Color " + text + ": [0-255]");
+        System.out.println("\n" + text + " component [0-255]:");
 
         try {
             BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
@@ -117,7 +117,7 @@ public class MenuCommandLine {
         int reR = -1;
         int reG = -1;
         int reB = -1;
-        System.out.println("\nColors RGB: ");
+        System.out.println("\nRGB color: ");
 
         while (reR == -1) {
             reR = selectColors("RED");
@@ -134,11 +134,11 @@ public class MenuCommandLine {
 
     static public int selectSizeNodes() {
         int re = -1;
-        System.out.println("\nSize of the Nodes: [1-3]");
+        System.out.println("\nSize of the Nodes [1-3]:");
 
-        System.out.println("\t1) - Small.");
-        System.out.println("\t2) - Medium.");
-        System.out.println("\t3) - Big.");
+        System.out.println("\t1) - Small");
+        System.out.println("\t2) - Medium");
+        System.out.println("\t3) - Big");
 
         try {
             BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
@@ -158,13 +158,13 @@ public class MenuCommandLine {
 
     static public int selectSizesTags() {
         int re = -1;
-        System.out.println("\nSize of the Tags: [1-3]");
+        System.out.println("\nSize of the Tags [1-3]:");
 
-        
-        System.out.println("\t1) - Small.");
-        System.out.println("\t2) - Medium.");
-        System.out.println("\t3) - Big.");
-        System.out.println("\t4) - Not show.");
+
+        System.out.println("\t1) - Small");
+        System.out.println("\t2) - Medium");
+        System.out.println("\t3) - Big");
+        System.out.println("\t4) - Hidden");
 
         try {
             BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
@@ -184,11 +184,11 @@ public class MenuCommandLine {
 
     static public int selectColorsNodes() {
         int re = -1;
-        System.out.println("\nColors of the Nodes: [1-3]");
+        System.out.println("\nColors of the Nodes [1-3]:");
 
-        System.out.println("\t1) - Default.");
-        System.out.println("\t2) - Custom Defined.");
-        System.out.println("\t3) - Based on the item relevance.");
+        System.out.println("\t1) - Default");
+        System.out.println("\t2) - Custom defined");
+        System.out.println("\t3) - Based on the item relevance");
 
         try {
             BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
@@ -205,14 +205,14 @@ public class MenuCommandLine {
         }
         return re - 1;
     }
-    
+
     static public int selectColorsEdges() {
         int re = -1;
-        System.out.println("\nColors of the Edges: [1-3]");
+        System.out.println("\nColors of the Edges [1-3]:");
 
-        System.out.println("\t1) - Default.");
-        System.out.println("\t2) - Custom Defined.");
-        System.out.println("\t3) - Based on the similarity.");
+        System.out.println("\t1) - Default");
+        System.out.println("\t2) - Custom defined");
+        System.out.println("\t3) - Based on item to item similarity");
 
         try {
             BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
@@ -232,10 +232,10 @@ public class MenuCommandLine {
 
     static public int selectColorsTags() {
         int re = -1;
-        System.out.println("\nColors of the Tags: [1-2]");
+        System.out.println("\nColors of the Tags [1-2]:");
 
-        System.out.println("\t1) - Default.");
-        System.out.println("\t2) - Custom Defined.");
+        System.out.println("\t1) - Default");
+        System.out.println("\t2) - Custom defined");
 
         try {
             BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
@@ -255,7 +255,7 @@ public class MenuCommandLine {
 
     private int selectExecution() {
         int re = -1;
-        System.out.println("\nType the model of the execution: [1-3]");
+        System.out.println("\nType the model of the execution [1-3]:");
 
         System.out.println("\t1) - One similarity measure execution");
         System.out.println("\t2) - All similarities measure execution");
@@ -278,7 +278,7 @@ public class MenuCommandLine {
 
     private int selectDataset() {
         int re = -1;
-        System.out.println("\nChoose a dataset: [1-5]");
+        System.out.println("\nChoose a dataset [1-5]:");
 
         for (DatasetToRead dtr : DatasetToRead.values()) {
             System.out.println("\t" + (dtr.ordinal() + 1) + ") - " + dtr.name());
@@ -305,7 +305,7 @@ public class MenuCommandLine {
     private int selectSimilarityMeasure() {
         int re = -1;
         int position = 0;
-        System.out.println("\nChoose a similarity measure: [1-17]");
+        System.out.println("\nChoose a similarity measure [1-17]:");
 
         for (SimilarityMeasureFinal sMF : listSM) {
             System.out.println("\t" + (position + 1) + ") - " + sMF.getName());
