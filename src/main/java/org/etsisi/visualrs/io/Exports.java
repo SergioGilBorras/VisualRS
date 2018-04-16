@@ -67,25 +67,25 @@ public class Exports {
     PreviewModel model = null;
     UndirectedGraph undirectedGraph = null;
 
-    double[] geoDataColor = null;
-    boolean EdgeBySimilarityColor = false;
+    private double[] geoDataColor = null;
+    private boolean EdgeBySimilarityColor = false;
 
-    Color colorNodes = Color.BLACK;
-    Color colorTags = Color.MAGENTA;
-    Color colorEdges = Color.BLACK;
+    private Color colorNodes = Color.BLACK;
+    private Color colorTags = Color.MAGENTA;
+    private Color colorEdges = Color.BLACK;
 
-    float sizeNodes = 15;
-    float sizeTags = 16;
+    private float sizeNodes = 15;
+    private float sizeTags = 16;
 
     String correlationName;
     String fileName;
 
     TypeFileExport TFE;
 
-    double maxN = -Double.MAX_VALUE;
-    double minN = -Double.MAX_VALUE;
-    double maxE = -Double.MAX_VALUE;
-    double minE = Double.MAX_VALUE;
+    private double maxN = -Double.MAX_VALUE;
+    private double minN = -Double.MAX_VALUE;
+    private double maxE = -Double.MAX_VALUE;
+    private double minE = Double.MAX_VALUE;
 
     /**
      * Constructor of the class
@@ -378,7 +378,7 @@ public class Exports {
             if (EdgeBySimilarityColor) {
                 model.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(EdgeColor.Mode.ORIGINAL));
             } else {
-                model.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(Color.BLACK));
+                model.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(colorEdges));
             }
             model.getProperties().putValue(PreviewProperty.EDGE_THICKNESS, 0.3f);
             model.getProperties().putValue(PreviewProperty.NODE_LABEL_FONT, model.getProperties().getFontValue(PreviewProperty.NODE_LABEL_FONT).deriveFont(sizeTags));
