@@ -134,7 +134,7 @@ We can export the generated tree graph using different graphic formats (PDF, SVG
 We can customize the generated graphics of this way. We can change the color and the size of the nodes, edges and tags.We have an especial colors change. Also we can change the color of the nodes according to number of votes of each node. And also we can change the color of the edges according to similarity value, as we show in this example.
 
 ```Java
-Exports graphicsGephi = new Exports(MRM);
+Exports GraphicsGephi = new Exports(MRM);
 GraphicsGephi.setColorNodes(Color.ORANGE);
 GraphicsGephi.setSizeNodes(20);
 GraphicsGephi.setColorEdgeBySimilarity();
