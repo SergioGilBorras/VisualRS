@@ -108,7 +108,7 @@ Then we will make the maximum spanning tree, by using the `MaximumSpanningTreeMa
 MaximumSpanningTreeMatrix MRM = new MaximumSpanningTreeMatrix(MC);
 ```
 
-In order to test the quality of the resulting tree graph, we select any metrics based on distance. In this example we have decided to use a matrix distance with `weight = 1`, but we have more distance matrices implementations in the 
+In order to test the quality of the resulting tree graph, we select any metrics based on distance. In this example we have decided to use a matrix distance with `weight = 1`, but we have more distance matrices implementations in the
 [`org.etsisi.visualrs.models`](https://sergiogilborras.github.io/VisualRS/org/etsisi/visualrs/models/package-summary.html) package.
 
 ```Java
@@ -130,18 +130,23 @@ We can print the result:
 System.out.println(QMC.getName() + " .. " + QMC.calculate());
 ```
 
-We can export the generated tree graph using different graphic formats (PDF, SVG, PNG). The CSV format as an adjacency list is also supported. In this example we choose the PDF format. 
-We can customize the generated graphics of this way. We can change the color and the size of the nodes, edges and tags.We have an especial colors change. Also we can change the color of the nodes according to number of votes of each node. And also we can change the color of the edges according to similarity value, as we show in this example.
+We can export the generated tree graph using different graphic formats (PDF, SVG, PNG). The CSV format as an adjacency list is also supported. In this example we choose the PNG format. We can also customize the exported graphs. We can define the color of nodes, edges and labels. We can also customize the size of nodes and tags. Edges' and nodes' colors can also be defined based on their similarity and relevance respectively. Following example shows how to customize the exported graph.
 
 ```Java
 Exports graphicsGephi = new Exports(MRM);
+
 GraphicsGephi.setColorNodes(Color.ORANGE);
 GraphicsGephi.setSizeNodes(20);
 GraphicsGephi.setColorEdgeBySimilarity();
 GraphicsGephi.setColorTags(Color.BLACK);
-GraphicsGephi.setSizeTags(20);
-GraphicsGephi.execute(TypeFileExport.PDF);
+GraphicsGephi.setSizeTags(0);
+
+GraphicsGephi.execute(TypeFileExport.PNG);
 ```
+
+The exported graph will looks like this:
+
+![Getting started exported graph](http://rs.etsisi.upm.es/visualrs/getting-started.jpg "Getting started exported graph")
 
 This example has been added to the `org.etsisi.visualrs.examples.GettingStarted` class. You can run it using the following command:
 

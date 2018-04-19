@@ -53,9 +53,10 @@ public class GettingStarted {
             GraphicsGephi.setSizeNodes(20);
             GraphicsGephi.setColorEdgeBySimilarity();
             GraphicsGephi.setColorTags(Color.BLACK);
-            GraphicsGephi.setSizeTags(20);
+            GraphicsGephi.setSizeTags(0);
 
-            GraphicsGephi.execute(TypeFileExport.PDF);
+            GraphicsGephi.execute(TypeFileExport.PNG);
+
         } catch (Exception e) {
             System.out.println("Excepcion: " + e.getMessage());
         }
