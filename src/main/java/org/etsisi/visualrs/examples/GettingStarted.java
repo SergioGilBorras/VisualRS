@@ -5,6 +5,7 @@
  */
 package org.etsisi.visualrs.examples;
 
+import java.awt.Color;
 import java.io.File;
 import org.etsisi.visualrs.io.Exports;
 import org.etsisi.visualrs.io.Exports.TypeFileExport;
@@ -47,6 +48,12 @@ public class GettingStarted {
             System.out.println(QMC.getName() + " => " + QMC.calculate());
 
             Exports GraphicsGephi = new Exports(MRM);
+
+            GraphicsGephi.setColorNodes(Color.ORANGE);
+            GraphicsGephi.setSizeNodes(20);
+            GraphicsGephi.setColorEdgeBySimilarity();
+            GraphicsGephi.setColorTags(Color.BLACK);
+            GraphicsGephi.setSizeTags(20);
 
             GraphicsGephi.execute(TypeFileExport.PDF);
         } catch (Exception e) {
