@@ -100,11 +100,11 @@ public class Exports {
         primMatrix = MRM.getMaximumSpanningTreeMatrix();
 
     }
-    
+
     /**
      * Activate the colors of the nodes according to the matrix of votes.
      * It desactive the default color.
-     * 
+     *
      * @param MV The Matrix of votes loads of the data.
      * @throws Exception When the param MV (Matrix of votes) is null.
      */
@@ -115,16 +115,16 @@ public class Exports {
 
     /**
      * Set the default Color of the Nodes.
-     * 
+     *
      * @param color It is the AWT Color to set.
      */
     public void setColorNodes(Color color) {
         colorNodes = color;
     }
-    
+
     /**
      * Set the default size of the Nodes
-     * 
+     *
      * @param size It is the float with the size of the node.
      */
     public void setSizeNodes(float size) {
@@ -133,7 +133,7 @@ public class Exports {
 
     /**
      * Set the default Color of the Tags.
-     * 
+     *
      * @param color It is the AWT Color to set.
      */
     public void setColorTags(Color color) {
@@ -142,7 +142,7 @@ public class Exports {
 
     /**
      * Set the default size of the Tags
-     * 
+     *
      * @param size It is the float with the size of the Tag.
      */
     public void setSizeTags(float size) {
@@ -151,16 +151,16 @@ public class Exports {
 
     /**
      * Set the default Color of the Edges.
-     * 
+     *
      * @param color It is the AWT Color to set.
      */
     public void setColorEdges(Color color) {
         colorEdges = color;
     }
-    
+
     /**
-     * Activate the colors of the Edge according to the similarity value. 
-     * It desactive the default color. 
+     * Activate the colors of the Edge according to the similarity value.
+     * It desactive the default color.
      */
     public void setColorEdgeBySimilarity() {
         EdgeBySimilarityColor = true;
@@ -224,11 +224,7 @@ public class Exports {
         double dif = max - min;
         double stp = dif / 9;
         int cc = (int) Math.round((d - min) / stp);
-//        System.err.println("d:" + d);
-//        System.err.println("max:" + max);
-//        System.err.println("min:" + min);
-//        System.err.println("cc:" + cc);
-//        System.err.println("------");
+        
         switch (cc) {
             case 0:
                 c = new Color(255, 0, 0);
