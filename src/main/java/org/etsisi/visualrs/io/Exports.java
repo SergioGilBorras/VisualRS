@@ -100,32 +100,68 @@ public class Exports {
         primMatrix = MRM.getMaximumSpanningTreeMatrix();
 
     }
-
+    
+    /**
+     * Activate the colors of the nodes according to the matrix of votes.
+     * It desactive the default color.
+     * 
+     * @param MV The Matrix of votes loads of the data.
+     * @throws Exception When the param MV (Matrix of votes) is null.
+     */
     public void SetColorNodesByVotes(LoadData MV) throws Exception {
         NumberVotes NV = new NumberVotes(MV);
         geoDataColor = NV.calculate();
     }
 
+    /**
+     * Set the default Color of the Nodes.
+     * 
+     * @param color It is the AWT Color to set.
+     */
     public void setColorNodes(Color color) {
         colorNodes = color;
     }
-
+    
+    /**
+     * Set the default size of the Nodes
+     * 
+     * @param size It is the float with the size of the node.
+     */
     public void setSizeNodes(float size) {
         sizeNodes = size;
     }
 
+    /**
+     * Set the default Color of the Tags.
+     * 
+     * @param color It is the AWT Color to set.
+     */
     public void setColorTags(Color color) {
         colorTags = color;
     }
 
+    /**
+     * Set the default size of the Tags
+     * 
+     * @param size It is the float with the size of the Tag.
+     */
     public void setSizeTags(float size) {
         sizeTags = size;
     }
 
+    /**
+     * Set the default Color of the Edges.
+     * 
+     * @param color It is the AWT Color to set.
+     */
     public void setColorEdges(Color color) {
         colorEdges = color;
     }
-
+    
+    /**
+     * Activate the colors of the Edge according to the similarity value. 
+     * It desactive the default color. 
+     */
     public void setColorEdgeBySimilarity() {
         EdgeBySimilarityColor = true;
     }
