@@ -29,7 +29,7 @@ public class GettingStarted {
 
     public GettingStarted() {
         try {
-            File myFile = new File(this.getClass().getResource("/datasets/FilmTrust.txt").getPath());
+            File myFile = new File(this.getClass().getResource("/datasets/FilmTrust.txt").toURI());
 
             LoadData MV = new LoadData(myFile, DatasetToRead.FilmTrust);
 

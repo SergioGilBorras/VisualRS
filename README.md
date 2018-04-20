@@ -87,7 +87,7 @@ java -jar mVisualRS-1.0.1.jar
 To use the library, we first load the selected dataset into the File class. We are using the provided datasets:
 
 ```Java
-File myFile = new File (this.getClass().getResource("/datasets/FilmTrust.txt").getPath());
+File myFile = new File (this.getClass().getResource("/datasets/FilmTrust.txt").toURI());
 ```
 
 The dataset is then loaded into the data structure:
