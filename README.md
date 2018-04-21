@@ -79,7 +79,7 @@ To use the library in other projects or to run our test application without Mave
 The following command runs the test application:
 
 ```
-java -jar mVisualRS-1.0.1.jar
+java -jar mVisualRS-1.2.0.jar
 ```
 
 ## Getting Started
