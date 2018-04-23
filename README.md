@@ -146,7 +146,7 @@ GraphicsGephi.execute(TypeFileExport.PNG);
 
 The exported graph will looks like this:
 
-![Getting started exported graph](http://rs.etsisi.upm.es/visualrs/getting-started.jpg "Getting started exported graph")
+![Getting started exported graph](http://rs.etsisi.upm.es/visualrs/getting-started.png "Getting started exported graph")
 
 This example has been added to the `org.etsisi.visualrs.examples.GettingStarted` class. You can run it using the following command:
 
@@ -339,16 +339,16 @@ This quality measure has been added to the class `org.etsisi.visualrs.examples.Q
 
 A Test class has been implemented to act as “Hello word”. The `Test` class contains three examples that are executed using the console:
 
-* `exec_once (index list, similarity measure)`: It executes a similarity measure on the chosen dataset. The index of the similarity measure will be passed to the function; then, the obtained graph will be tested through the different quality measures. Results will be displayed by console. Results from the graph will be exported in all the supported file types (PDF, PNG, CSV, SVG).
+* `exec_once(index list, similarity measure)`: It executes a similarity measure on the chosen dataset. The index of the similarity measure will be passed to the function; then, the obtained graph will be tested through the different quality measures. Results will be displayed by console. Results from the graph will be exported in all the supported file types (PDF, PNG, CSV, SVG).
 
-* `exec_batch ()`: It executes all the provided similarity measures. The obtained graphs will be tested through the different quality measures. Results will be saved in a spreadsheet. Results from each graph will be exported in all the supported file types (PDF, PNG, CSV, SVG).
+* `exec_batch()`: It executes all the provided similarity measures. The obtained graphs will be tested through the different quality measures. Results will be saved in a spreadsheet. Results from each graph will be exported in all the supported file types (PDF, PNG, CSV, SVG).
 
-* `executionBattery_graph ()`: It executes all the provided similarity measures. Results from each graph will be exported in all the supported file types (PDF, PNG, CSV, SVG). In this case, the quality measures on each graph will not be executed.
+* `executionBattery_graph()`: It executes all the provided similarity measures. Results from each graph will be exported in all the supported file types (PDF, PNG, CSV, SVG). In this case, the quality measures on each graph will not be executed.
 
 To execute the console Test code, we use the command:  
 
 ```
-java -jar mVisualRS-1.0.1.jar
+mvn exec:java -Dexec.mainClass="org.etsisi.visualrs.test.Test"
 ```
 
 The Test program allows us to select the dataset:
@@ -363,11 +363,15 @@ If we have chosen “One similarity measure execution”, another menu will be s
 
 ![Similarity metric selection](http://rs.etsisi.upm.es/visualrs/image007.png "Similarity metrics selection")
 
+After that, we find a menu to customize the exported graph. We can define the color and size of nodes, edges and tags:
+
+![Exported graph customization](http://rs.etsisi.upm.es/visualrs/image007-2.png "Exported graph customization")
+
 The intermediate matrices results and the different export files will be saved into the `./Data` folder. Inside this folder we will find subfolders with the names of the used data files, and within each of these we will find: a) The spreadsheet with the results of all similarity measures, b) A copy of the rating matrix, and c) Several folders containing the intermediate matrices of each similarity measure.
 
 ## Results
 
-Next we show the resulting table from the option 1 execution: "All similarities measures execution" corresponding to the Test class `exec_batch ()` method.
+Next we show the resulting table from the option 1 execution: "All similarities measures execution" corresponding to the Test class `exec_batch()` method.
 
 The table shows a complete set of quality measures results when all the implemented similarity measures are applied to the MovieLens 1M dataset. Red values represent inadequate results, while blue shadowed cells show the best results. This experiment shows the superiority of the `JMSD` and `Jaccard * Cosine` metrics to represent MovieLens RS information. The set of implemented quality measures is:
 
